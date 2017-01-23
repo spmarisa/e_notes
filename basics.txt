@@ -1,0 +1,87 @@
+NUMBERS - two types of numbers. Arbitrary sized integers and floating points numbers.
+
+use underscore to separate groups of three digits when writing large numbers.hundred million like this: 100_000_000
+
+Octal: 0o444
+
+Hexdecimal: 0xabc
+
+Binary: 0b1011
+
+Floats: 1.0, 0.3141589e1, and 314159.0-e.
+
+
+ATOMS - constants that represent names.immutable values
+You write an atom with a leading colon : and a sequence of letters, digits, underscores, and at signs @.
+You can also write them with a leading colon : and an arbitrary sequence of characters enclosed by quotes.
+
+Atoms are a very powerful tool, they are used to reference erlang functions as well as keys and Elixir methods.
+Here are a few valid atoms.
+
+:name, :first_name, :"last name",  :===, :is_it_@_question?
+
+
+BOOLEANS - booleans are true and false values. But the nice thing about them is at the end of the day, they’re just atoms.
+
+
+STRINGS - By default, strings in Elixir are UTF-8 compliant. To use them you can have an arbitrary number of characters enclosed by " or '.
+You can also have interpolated expressions inside the string as well as escaped characters.
+
+Be aware that single quoted strings are actually a list of binaries.
+
+
+
+ANONYMOUS FUNCTIONS - As a functional language, Elixir has anonymous functions as a basic type.
+A simple way to write a function is
+
+fn (argument_list) -> body end.
+
+But a function can have multiple bodies with multiple argument lists, guard clauses, and so on.
+
+
+
+TUPLES - is an immutable indexed array.
+They are fast to return its size and slow to append new values due its immutable nature.
+ When updating a tuple, you are actually creating a whole new copy of the tuple self.
+
+Tuples are very often used as the return value of an array. While coding in Elixir you will very often see this, {:ok, something_else_here}.
+
+Here’s how we write a tuple: {?a,?b,?c}.
+
+
+
+PATTERN MATCHING - Elixir uses = as a match operator.
+ In traditional languages the equals operator is for assignment. In Elixir, the equals operators is for pattern matching.
+
+So, that’s the way it works values in the left hand side. If they are variables they are bound to the right hand side,
+if they are not variables elixir tries to match them with the right hand side.
+
+
+PIN OPERATOR - Elixir provides a way to always force pattern matching against the variable in the left hand side, the pin operator.
+
+
+LISTS - In Elixir, Lists look like arrays as we know it from other languages but they are not.
+Lists are linked structures which consist of a head and a tail.
+
+
+KEYWORD LISTS - Keyword Lists are a list of Tuple pairs.
+You simply write them as lists. For instance: [{:one, 1}, 2, {:three, 3}].
+There’s a shortcut for defining lists, here’s how it looks: [one: 1, three: 3].
+
+In order to retrieve an item from a keyword list you can either use:
+Keyword.get([{:one, 1}, 2, {:three, 3}], :one)
+
+Or use the shortcut:
+[{:one, 1}, 2, {:three, 3}][:one]
+Because keyword lists are slow when retrieving a value, in it is an expensive operation,
+so if you are storing data that needs fast access you should use a Map.
+
+
+MAPS - Maps are an efficient collection of key/value pairs.
+The key can have any value you want as a key, but usually should be the same type.
+Different from keyword lists, Maps allow only one entry for a given key.
+They are efficient as they grow and they can be used in the Elixir pattern matching in general use maps when you need an associative array.
+
+Here’s how you can write a Map:
+
+%{ :one => 1, :two => 2, 3 => 3, "four" => 4, [] => %{}, {} => [k: :v]}
