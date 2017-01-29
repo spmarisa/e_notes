@@ -1,0 +1,137 @@
+#in elixir the basic building block is a function
+# functions transform data - take i/p performing some action and return some output
+# for code maintainability - group similar functions together - this is where modules come in
+
+List.inset_at - insert_at is a function in list module
+
+only way to have a named function is to place it inside a module
+
+- how to create modules and functions
+- refer other modules and custom module
+- examine pattern matching in detail - how to capitalize on pattern matching with our functions and doing so reducing complexity of code
+
+? create custom modules
+? write named functions
+
+#two types of files -> .ex - get compiled to bytecode and written to disk in a beam file
+                    -> .exs - for scripting, will stay in memory when run
+
+#name is in pascal case
+
+#defmodule is not a keyword, its a macro
+#elixirs ability to metaprogram with macros
+#elixir is able to do what it does is because of its macros
+
+
+
+#iex
+$iex "module_playground.exs"
+
+> ModulePlayground.say_here
+
+#to reload that module
+> r(ModulePlayground)
+
+
+#have a look at directives available to us
+
+#first one is the import directive
+#if we want to do anything in elixir we have to provide a fully specified module (ModulePlayground.say_here and another one IO.puts)
+
+#using import we can specify taht we want to include the IO module as part of our module, so we nolonger needed to specify IO.puts
+
+$iex "module_playground.exs"
+> ModulePlayground.say_here
+
+
+#the best practice when importing module is to limit the functions only to those that you will be using in your module
+#this helps reduce collisions between modules that might have the same name for a function
+
+#while importing we can specify what functions we want
+
+import IO, only: [puts: 1]
+
+
+
+
+#even if we doesnt implicitly import Kernel in our module its there, infact kernel is imported into every module
+#as there is only function, there is also except function
+
+import Kernel, except: [inspect: 1]
+#says everything in the kernel will be available in our module without prefixing it without a module name except for the inspect one
+#its not a good idea to write a function that collides with kernel, in cases like those use except
+
+
+
+#next directive will help reduce typing and could be used to avoid collisions that is alias directives
+
+#create a misc.util.math module which is underneath out module playground
+#go to root module and new function that uses our new math modules add function
+>r(ModulePlayground)
+>import_file("misc_util_math.exs")
+>ModulePlayground.print_sum
+
+#instead of long process we use an alias
+>r(ModulePlayground)
+>import_file("misc_util_math.exs")
+>ModulePlayground.print_sum
+
+#in case we want to avoid collisions b/w our math modules and some one elses math module, we can tell how to alias our module
+
+
+
+
+
+#require directive - used to bring a macro into a module
+#if a module is using a macro elixir needs to know during complie time that it should bring in that macro as well
+#example - integer module - core part of elixir - provides two macros ( is_even, is_odd ) name says it all
+#to import macro
+
+require Integer
+
+
+#import - include module functions / include or exclude specific functions
+#alias - reduce typing / rename a module in your ModulePlayground
+#require - allows using macros is your module
+
+#all three directives at module level or even inside of a function and have them scoped specifically to that function
+
+
+
+
+
+
+#more details of functions - enum functions
+#elixir already has a robust enum module, our goal here is not to replace that
+#writing a enum module will aid us in understanding some of the key concepts of elixirs modules and functions
+#read more about macros and def is a macro
+
+$ iex "sample_enum.exs"
+Sample.Enum.first([1, 2, 3])
+
+#Function Arity
+{function name} / {number of parameters}
+first/1
+
+
+
+
+
+
+#DEFAULT PARAMETERS
+#we can supply parameters to a function and specify a default value
+
+
+  def add(list, val \\ 0) do
+    [val | list]
+  end
+
+here see that "\\" that specifies the default value if the val is not specified
+
+Sample.Enum.add([:a, :b])
+Sample.Enum.add([:a, :b], :s)
+
+#adding default for existing functions
+Sample.Enum.first([1, 2, 3])
+Sample.Enum.first([])
+Sample.Enum.first([], 5)  

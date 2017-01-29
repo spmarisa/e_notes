@@ -85,3 +85,41 @@ They are efficient as they grow and they can be used in the Elixir pattern match
 Here’s how you can write a Map:
 
 %{ :one => 1, :two => 2, 3 => 3, "four" => 4, [] => %{}, {} => [k: :v]}
+
+
+
+
+
+
+
+
+
+
+
+comparision(==, !=, ===, !==, >, >=, <, <=)
+boolean(and, or, not)
+arithmetic(+, -, *, /)
+binary concatination <>
+"in" operator
+
+Type Check functions
+
+Additional functions
+
+abs(number)
+binary_part(binary, start, length)
+bit_size(bitstring)
+byte_size(bitstring)
+div(integer, integer)
+elem(tuple, n)
+hd(list)
+length(list)
+map_size(map)
+node()
+node(pid | ref | port)
+rem(integer, integer)
+round(number)
+self()
+tl(list)
+trunc(number)
+tuple_size(tuple)
