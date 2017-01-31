@@ -131,7 +131,48 @@ here see that "\\" that specifies the default value if the val is not specified
 Sample.Enum.add([:a, :b])
 Sample.Enum.add([:a, :b], :s)
 
+
+# take the example below
+  def first([], val \\ nil), do: val
+  def first([head | _]), do: head
+# we get an error, first/1 conflicts with defaults from first/2
+# first/1 doesnt have a second parameter, elixir doesnt know what to do when we pass only 1 parameter
+#swap the places
+  def first([head | _]), do: head
+  def first([], val \\ nil), do: val
 #adding default for existing functions
-Sample.Enum.first([1, 2, 3])
-Sample.Enum.first([])
-Sample.Enum.first([], 5)  
+  Sample.Enum.first([1, 2, 3])
+  Sample.Enum.first([])
+  Sample.Enum.first([], 5)
+
+#its not particularly useful when we pass a list and a default value
+  Sample.Enum.first([1, 2, 3], 0)
+
+  #give a second parameter to method signature on first/1 it becomes first/2: that val will be tossed out
+  def first([head | _], val), do: head
+  def first([], val \\ nil), do: val
+
+#now reload our module, we get a warning that multiple clauses with default values should define a function head with defaults
+#we have to perform a function declaration without a body
+  def first(list, val \\ nil)
+  def first([head | _], _), do: head
+  def first([], val), do: val
+
+  Sample.Enum.first([1, 2,3])
+  Sample.Enum.first([1, 2, 3], :ok)
+  Sample.Enum.first([], :ok)
+  Sample.Enum.first([])
+
+
+
+
+
+
+
+
+#PRIVATE FUNCTIONS
+same old private functions
+  trace(:ok)
+  defp trace(string) do
+      IO.puts("The value passed in was #{string}")
+  end
