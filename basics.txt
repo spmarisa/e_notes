@@ -39,7 +39,6 @@ fn (argument_list) -> body end.
 But a function can have multiple bodies with multiple argument lists, guard clauses, and so on.
 
 
-
 TUPLES - is an immutable indexed array.
 They are fast to return its size and slow to append new values due its immutable nature.
  When updating a tuple, you are actually creating a whole new copy of the tuple self.
