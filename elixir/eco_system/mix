@@ -1,0 +1,12 @@
+mix elixir build tool
+
+it will compile an application, its more than a compiler
+
+$mix help
+
+#to start an application
+
+mix new
+
+mix new pluralsight_tweet --sup
+cd pluralsight_tweet && mix

@@ -1,0 +1,18 @@
+we got a lot of building blocks
+
+-> MIX - elixir build tool - it provides more functionality than just compiling an application
+
+
+-> HEX - package manager
+
+
+
+
+SUPERVISORS - if any unexpected command is passed the system crashes and you just have to restart it
+              we are monitoring it and restarting it when it crashes
+
+              in elixir we can specify that other process as supervisor - the only thing this process is
+              responsible for is wathing other process and restarting them if they crash
+
+
+UMBRELLAS - umbrella project is a project that has other elixir projects underneath it 
