@@ -26,3 +26,7 @@ true == :true
 #same goes for nil
 # it should return the first item that is true nil is also considered as false
 nil || false || :firstname || true
+
+
+# Atoms are also used to reference modules from Erlang libraries, including built in ones.
+:crypto.rand_bytes 3

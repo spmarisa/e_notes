@@ -1,16 +1,26 @@
-#for saving a handful of  values
-
+# Lists are simple collections of values, they may include multiple types; lists may include non-unique values:
+# for saving a handful of  values
 first_list = [1, 2, 3]
-
 second_list = [:ok, 1, "yes", first_list]
 
-
-#in elixir a list can be thought as a head and a tails
-#head is the first element and tail the rest of the list
+# Elixir implements list as linked lists
+# in elixir a list can be thought as a head and a tails
+# head is the first element and tail the rest of the list
 # 2 build in functions for getting head and tail
-
 hd(first_list)
 tl(first_list)
+
+# accessing the list length is an O(n) operation. For this reason, it is typically faster to prepend than append
+# Concatenation
+list = [3.14, :pie, "Apple"]
+["π"] ++ list
+
+# Subtraction
+# It uses strict comparison to match the values.
+["foo", :bar, 42] -- [42, "bar"]
+
+
+
 
 #pipe is used to create lists
 

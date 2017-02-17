@@ -1,0 +1,69 @@
+phoenix is  a web framework for elixir, chris_mccord created it
+phoenix and elixir give you both performance and productivity
+
+if you dont understand a error message in elixir it s bug
+
+phoenix - web framework
+elixir - programming language
+erlang - a programming language and virtual machine that elixir runs on
+
+PRODUCTIVITY
+
+short term - documentation/guides/generators
+           - eliminates trivial choices(convention over configuration, like project hierarchy, naming)
+
+log term - maintainability
+         - introspection
+         - tried and true architecture pattern
+
+we tried to remove middle ware as elixir is functional
+a web server abstraction library called plug
+plug allows you to write functions where you would normally have middelware
+
+REQUEST LIFE CYCLE
+
+endpoints - can have multiple web servers
+
+routers - router pipeline
+
+controllers
+
+
+GENERATOTS -
+
+CHANNELS - real time layers
+
+
+Asset build tool - brunch
+
+ES6
+ES6
+ES6
+ES6
+ES6
+
+LIVE RELOADING
+
+
+VIEWS & TEMPLATES
+- precompiled and fast
+- views render templates
+- views a=serve as a presentation layer
+
+
+CACHING
+
+ROBUST concurrency model
+- "processes" extremely lightweight units of concurrency
+- garbage collection is per process
+- load balances on IO and CPU
+
+- in elixir we can do CPU bound task and dont have to worry about that
+
+
+CHANNELS
+
+
+MONITORING SYSTEM
+
+DEBUG TOOLS BUILT IN
