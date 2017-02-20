@@ -1,7 +1,0 @@
-strings in Elixir are UTF-8 compliant.
-
-To use them you can have an arbitrary number of characters enclosed by " or '.
-
-You can also have interpolated expressions inside the string as well as escaped characters.
-
-Be aware that single quoted strings are actually a list of binaries.

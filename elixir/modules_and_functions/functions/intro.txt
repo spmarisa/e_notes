@@ -6,22 +6,11 @@ List.inset_at - insert_at is a function in list module
 
 only way to have a named function is to place it inside a module
 
-- how to create modules and functions
-- refer other modules and custom module
-- examine pattern matching in detail - how to capitalize on pattern matching with our functions and doing so reducing complexity of code
-
-? create custom modules
-? write named functions
-
-#two types of files -> .ex - get compiled to bytecode and written to disk in a beam file
-                    -> .exs - for scripting, will stay in memory when run
-
 #name is in pascal case
 
 #defmodule is not a keyword, its a macro
 #elixirs ability to metaprogram with macros
 #elixir is able to do what it does is because of its macros
-
 
 
 #iex
@@ -38,7 +27,7 @@ $iex "module_playground.exs"
 #first one is the import directive
 #if we want to do anything in elixir we have to provide a fully specified module (ModulePlayground.say_here and another one IO.puts)
 
-#using import we can specify taht we want to include the IO module as part of our module, so we nolonger needed to specify IO.puts
+#using import we can specify that we want to include the IO module as part of our module, so we nolonger needed to specify IO.puts
 
 $iex "module_playground.exs"
 > ModulePlayground.say_here
@@ -176,3 +165,69 @@ same old private functions
   defp trace(string) do
       IO.puts("The value passed in was #{string}")
   end
+
+
+#in elixir functions are first class citizens, what does it mean for a function to be a first class citizen
+
+#Elixir supports passing functions as ARGUMENTS to other functions, RETURNING them as the values from other functions, and
+#ASSIGNING them to variables
+
+#creating a module that contains utility functions
+
+#we utilize enum module, elixir have a pretty extensive enum module that allows us to operate on various enums(such as lists)
+
+#first one we look at will square a number
+
+#first enum is the map function
+#map will take a list and a function and will return a new list that is made up by passing each value in list to the function
+
+list = [1, 2, 3, 4]
+
+Enum.map(list, &Sample.Utils.square/1)
+
+#we prefix our function with &, it is the capture operator and will get us a reference to the function
+# we are using arity to specify which function (square/1 or square/2)
+#this is an example of passing a function into another function as a parameter
+
+#another example with reduce
+
+Enum.reduce(list, 0, &Sample.Utils.sum/2)
+
+#the sum parameter takes 2 params instead of 1
+#the above is like passing one function to another function
+
+
+
+
+
+
+#ANONYMOUS FUNCTIONS
+#we can accomplish the same behaviour above as anonymous function
+list = [1, 2, 3, 4]
+
+#fn followed by the parameter list. everything between the "->" and "end" is the function body(lambda syntax functions in c#)
+Enum.map(list, fn(x) -> x*x end)
+
+#we can specify our anonymous functions take multiple parameters
+# acc is our accumilator - its 0 for first run, then 1 .. then 2 ...etc
+Enum.reduce(list, 0, fn(x, acc) -> acc + x end)
+
+#we can still further reduce them using capture syntax by using capture syntax
+Enum.map(list, &(&1 * &1))
+Enum.reduce(list, 0, &(&1 + &2))
+
+#whether we use named function, a lambda style anonymous function or a capture style anonymous function depends on clarity, readibility, reusability
+
+
+
+
+
+#look at what it is like to call a function that is passed to one of your functions
+  def custom_func(a, f) do
+    f.(a)
+  end
+#this function takes a parameter "a" and a function "f" and performs the function on the parameter
+  c("sample_utils.exs")
+  Sample.Utils.custom_func(1, fn(x) -> IO.puts(x) end)
+
+# to call a anonymous function we have to use a "." between function name and the parantheses

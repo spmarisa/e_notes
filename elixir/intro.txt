@@ -8,3 +8,12 @@ Features:
           Fault-tolerant
           Functional Programming
           Extensible
+
+
+          #two types of files -> .ex - get compiled to bytecode and written to disk in a beam file
+                              -> .exs - for scripting, will stay in memory when run
+
+
+#defmodule is not a keyword, its a macro
+#elixirs ability to metaprogram with macros
+#elixir is able to do what it does is because of its macros

@@ -1,7 +1,0 @@
-TUPLES is an immutable indexed array.
-
-They are fast to return its size and slow to append new values due its immutable nature.
-
-When updating a tuple, you are actually creating a whole new copy of the tuple self.
-
-Tuples are very often used as the return value of an array. While coding in Elixir you will very often see this, {:ok, something_else_here}.

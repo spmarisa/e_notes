@@ -20,14 +20,11 @@ list = [3.14, :pie, "Apple"]
 ["foo", :bar, 42] -- [42, "bar"]
 
 
-
-
 #pipe is used to create lists
-
 third_list = [1 | [2, 3]]
 
-1 -> head
-[2, 3] -> tail
+#1 -> head
+#[2, 3] -> tail
 
 fourth_list =  [1 | [2 | [3 | []]]]
 
@@ -39,7 +36,13 @@ fourth_list =  [1 | [2 | [3 | []]]]
 [:ok | first_list]
 
 #pattern matching in lists
+first_list = [1, 2, 3]
 [a, b, c] = first_list
+
+[h|t] = [3.14, :pie, "Apple"]
+#h
+#t
+
 
 #this kind of pattern matching is useful if we are looking at processing lists
 #helps in recursing over lists
@@ -52,3 +55,10 @@ fourth_list =  [1 | [2 | [3 | []]]]
 options = [{:is_active, false}, {:notify_user, true}, {:create_if_not_exists, true}]
 
 options[:notify_user]
+
+
+#List Concatenation
+[1, 2] ++ [3, 4, 1]
+
+#List Subtraction
+["foo", :bar, 42] -- [42, "bar"]s
