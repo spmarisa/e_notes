@@ -1,8 +1,8 @@
-defmodule Hello.Mixfile do
+defmodule Example.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :hello,
+    [app: :example,
      version: "0.1.0",
      elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
@@ -18,6 +18,10 @@ defmodule Hello.Mixfile do
     [extra_applications: [:logger]]
   end
 
+  def escript do
+    [main_module: ExampleApp.CLI]
+  end
+
   # Dependencies can be Hex packages:
   #
   #   {:my_dep, "~> 0.3.0"}
@@ -27,7 +31,16 @@ defmodule Hello.Mixfile do
   #   {:my_dep, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
   #
   # Type "mix help deps" for more examples and options
-  defp deps do
-    []
+  # defp deps do
+  #   []
+  # end
+
+  def deps do
+    [{:phoenix, "~> 1.1 or ~> 1.2"},
+     {:phoenix_html, "~> 2.3"},
+     {:cowboy, "~> 1.0", only: [:dev, :test]},
+     {:slime, "~> 0.14"}]
   end
+
+
 end
