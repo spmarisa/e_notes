@@ -1,0 +1,29 @@
+AutoComplete
+
+Map. (press tab)
+
+
+#.iex.exs
+Every time IEx starts it will look for a .iex.exs configuration file. If it’s not present in the current directory, then the user’s home directory (~/.iex.exs) will be used as the fallback.
+
+Configuration options and code defined within this file will be available to us when the IEx shell starts up. For instance if we want some helper functions available to us in IEx, we can open up .iex.exs and make some changes.
+
+Let’s start by adding a module with a few helper methods:
+
+#check this again
+
+
+#h - the docs for any code can be reached using this helper
+h Enum
+
+#i - prints info about the given datatype
+
+#r -  if we want to recompile a particular module we can use 'r' helper
+
+Let’s say we’ve changed some code and want to run a new function we’ve added. To do that we need to save our changes and recompile with r:
+r MyProject
+
+#s - With s we can retrieve the type spec information for a module or function, we can use this to know it expects:
+s Map.merge/2
+
+#t - The t helper tells us about Types available in a given module:
