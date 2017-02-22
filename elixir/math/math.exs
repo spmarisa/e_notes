@@ -1,3 +1,13 @@
+# NUMBERS - two types of numbers. Arbitrary sized integers and floating points numbers.
+
+# use underscore to separate groups of three digits when writing large numbers.hundred million like this: 100_000_000
+
+# Octal: 0o444
+# Hexdecimal: 0xabc
+# Binary: 0b1011
+# Floats: 1.0, 0.3141589e1, and 314159.0-e.
+# Floats in Elixir are 64 bit double precision.
+
 5 * 5
 
 i 22 * 7
@@ -33,3 +43,9 @@ rem(10,5)
 
 # in c# upperlimit for a number is 2.1 billion
 # i quintillion - 1 with 18 zeros only limit is the amount of memory
+
+# You can invoke the round function to get the closest integer to a given float
+round(3.58)
+
+# the trunc function to get the integer part of a float.
+trunc(3.58)

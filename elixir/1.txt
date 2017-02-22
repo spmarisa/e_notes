@@ -42,8 +42,6 @@ Asset build tool - brunch
 ES6
 ES6
 ES6
-ES6
-ES6
 
 LIVE RELOADING
 

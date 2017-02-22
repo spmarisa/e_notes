@@ -1,6 +1,7 @@
 # Lists are simple collections of values, they may include multiple types; lists may include non-unique values:
 # for saving a handful of  values
 first_list = [1, 2, 3]
+#values can be of anyty
 second_list = [:ok, 1, "yes", first_list]
 
 # Elixir implements list as linked lists
@@ -61,4 +62,7 @@ options[:notify_user]
 [1, 2] ++ [3, 4, 1]
 
 #List Subtraction
-["foo", :bar, 42] -- [42, "bar"]s
+["foo", :bar, 42] -- [42, "bar"]
+
+#list length
+length([1, 2, 3])

@@ -1,5 +1,5 @@
 # Strings, Char Lists, Graphemes and Codepoints. string functions
-# strings in Elixir are UTF-8 compliant.
+# Strings in Elixir are inserted between double quotes, and they are encoded in UTF-8:
 
 # To use them you can have an arbitrary number of characters enclosed by " or '.
 
@@ -32,6 +32,10 @@ hello <> name
 #string interpolation
 handle = "spmarisa"
 "my twitter handle is @#{handle}. feel free to ping"
+
+#linebreaks
+a = "hello\nworld"
+IO.puts(a)
 
 
 #list of number
@@ -86,3 +90,10 @@ String.codepoints string
 
 String.graphemes string
 # ["á"]
+
+# Strings in Elixir are represented internally by binaries which are sequences of bytes:
+is_binary("hellö")
+
+
+#string functions
+String.upcase("hellö")

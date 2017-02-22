@@ -36,3 +36,7 @@ not false
 # number < atom < reference < function < port < pid < tuple < map < list < bitstring
 :hello > 999
 {:hello, :world} > [1, 2, 3]
+
+
+
+# As a rule of thumb, use and, or and not when you are expecting booleans. If any of the arguments are non-boolean, use &&, || and !.

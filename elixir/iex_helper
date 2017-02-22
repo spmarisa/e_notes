@@ -27,3 +27,5 @@ r MyProject
 s Map.merge/2
 
 #t - The t helper tells us about Types available in a given module:
+
+erl -version

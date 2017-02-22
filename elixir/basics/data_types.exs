@@ -1,5 +1,6 @@
 # Integers
 255
+0x1F
 
 # Floats
 3.14
@@ -27,12 +28,21 @@ a = "foo\nbar"
 IO.puts(a)
 
 
-# Collections
-# List, tuples, keywords, maps and functional combinators.
+#Collections
+#List, tuples, keywords, maps and functional combinators.
+
 #Lists
+[1, 2, 3]
+
 #Tuples
+{1, 2, 3}
+
 #Keyword lists
 #Maps
+
+
+
+#elixir also provides Port, Reference, and PID as data types
 
 # An important feature of Elixir is that any two types can be compared; this is particularly useful in sorting.
 # number < atom < reference < function < port < pid < tuple < map < list < bitstring

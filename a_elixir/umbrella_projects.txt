@@ -1,0 +1,66 @@
+sometimes a project can get big, really big in fact.
+The Mix build tool allows us to split our code into multiple apps and make our Elixir projects more manageable as they grow.
+
+INTRODUCTION
+To create an umbrella project we start a project as if we were going to start a normal Mix project but pass in the --umbrella flag. we are going to make the shell of a machine learning toolkit. Why a machine learning toolkit? Why not? It is made up of various learning algorithms and utility functions.
+
+mix new machine_learning_toolkit --umbrella
+
+#* creating .gitignore
+#* creating README.md
+#* creating mix.exs
+#* creating apps
+#* creating config
+#* creating config/config.exs
+
+#Your umbrella project was created successfully.
+#Inside your project, you will find an apps/ directory
+#where you can create and host many apps:
+
+#    cd machine_learning_toolkit
+#    cd apps
+#    mix new my_app
+
+#Commands like "mix compile" and "mix test" when executed
+#in the umbrella project root will automatically run
+#for each application in the apps/ directory.
+
+
+#  apps/ - where our sub (child) projects will reside
+#  config/ - where our umbrella projects configuration will live
+
+###################################################################################################################################
+
+CHILD PROJECTS
+Let’s change into the projects machine_learning_toolkit/apps directory and create 3 normal applications using Mix as so:
+
+mix new utilities
+
+mix new datasets
+
+mix new svm
+
+
+#change back to the umbrella project root
+mix compile
+
+###################################################################################################################################
+
+IEX
+
+if we change directory into the top level directory, and start IEx with the
+iex -S mix
+
+we can interact with all the projects normally
+
+#alter the contents of apps/datasets/lib/datasets.ex
+
+#defmodule Datasets do
+#  def hello do
+#    IO.puts "Hello, I'm the datasets"
+#  end
+#end
+
+iex -S mix
+
+Datasets.hello

@@ -1,4 +1,8 @@
 #in elixir the basic building block is a function
+#Functions in Elixir are identified by both their name and their arity.(arity means the number of arguments the function takes)
+
+ #round/1 identifies the function which is named round and takes 1 argument, whereas round/2 identifies a different (nonexistent) function with the same name but with an arity of 2.
+
 # functions transform data - take i/p performing some action and return some output
 # for code maintainability - group similar functions together - this is where modules come in
 
@@ -6,7 +10,7 @@ List.inset_at - insert_at is a function in list module
 
 only way to have a named function is to place it inside a module
 
-#name is in pascal case
+#name is in pascal case - PascalCase
 
 #defmodule is not a keyword, its a macro
 #elixirs ability to metaprogram with macros

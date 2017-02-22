@@ -31,3 +31,17 @@ title = elem(book, 0)
 
 # It is common for tuples to be used as a mechanism to return additional information from functions; the usefulness of this will be more apparent when we get into pattern matching:
 File.read("path/to/existing/file")
+
+#size of tuple
+tuple_size({:ok, "hello"})
+tuple_size {:ok, "hello"}
+
+# It is also possible to put an element at a particular index in a tuple with put_elem/3:
+tuple = {:ok, "hello"}
+# {:ok, "hello"}
+put_elem(tuple, 1, "world")
+# {:ok, "world"}
+tuple
+# {:ok, "hello"}
+
+# Notice that put_elem/3 returned a new tuple. The original tuple stored in the tuple variable was not modified because Elixir data types are immutable. By being immutable, Elixir code is easier to reason about as you never need to worry that any code might be mutating your data structure in place.

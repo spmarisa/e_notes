@@ -1,15 +1,24 @@
-# Anonymous Functions
+# Functions are “first class citizens” in Elixir meaning they can be passed as arguments to other functions in the same way as integers and strings.
 
+#############################################################################################################################
+# Anonymous Functions
+# Anonymous functions can be created inline and are delimited by the keywords fn and end:
 # Just as the name implies, an anonymous function has no name. these are frequently passed to other functions. To define an anonymous function in Elixir we need the fn and end keywords. Within these we can define any number of parameters and function bodies separated by ->.
 
-sum = fn (a, b) -> a + b end
+sum = fn(a, b) -> a + b end
 sum.(2, 3)
 
 # The & Shorthand
 sum = &(&1 + &2)
 sum.(2, 3)
 
-###############################################################################################################################
+# The dot ensures there is no ambiguity between calling an anonymous function named add and a named function add/2
+
+# Anonymous functions are closures and as such they can access variables that are in scope when the function is defined. Let’s define a new anonymous function that uses the add anonymous function we have previously defined:
+double = fn a -> sum.(a, a) end
+double.(2)
+
+#############################################################################################################################
 # Pattern Matching
 # Pattern matching isn’t limited to just variables in Elixir, it can be applied to function signatures as we will see in this section.
 # Elixir uses pattern matching to identify the first set of parameters which match and invokes the corresponding body:
@@ -23,7 +32,7 @@ some_result = 1
 handle_result.({:ok, some_result})
 
 handle_result.({:error})
-###############################################################################################################################
+#############################################################################################################################
 
 # Named Functions
 # We can define functions with names so we can easily refer to them later. Named functions are defined within a module using the def keyword . We’ll learn more about Modules in the next lessons, for now we’ll focus on the named functions alone.
