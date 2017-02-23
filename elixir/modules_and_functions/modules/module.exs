@@ -1,5 +1,8 @@
 # Modules
 # Modules are the best way to organize functions into a namespace. In addition to grouping functions, they allow us to define named and private functions which we covered in the previous lesson.
+
+# In order to create our own modules in Elixir, we use the defmodule macro. We use the def macro to define functions in that module:
+
 defmodule Example do
   def greeting(name) do
     "Hello #{name}."

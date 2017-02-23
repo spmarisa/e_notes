@@ -68,7 +68,7 @@ Greeter2.hello()
 Greeter2.hello("Fred")
 Greeter2.hello("Fred", "Jane")
 
-
+#########################################################################################################################
 
 # Private Functions
 # When we don’t want other modules accessing a specific function we can make the function private. Private functions can only be called from within their own Module. We define them in Elixir with defp:
@@ -80,6 +80,7 @@ end
 Greeter.hello("Sean")
 Greeter.phrase
 
+#########################################################################################################################
 
 # Guards
 # Once Elixir has matched a function any existing guards will be tested.
@@ -103,8 +104,10 @@ end
 Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 
+#########################################################################################################################
 
 
+#########################################################################################################################
 
 
 # Default Arguments

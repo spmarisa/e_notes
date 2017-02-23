@@ -7,6 +7,19 @@
 
 # Be aware that single quoted strings are actually a list of binaries.
 
+string = "hello"
+is_binary(string)
+
+# In Elixir, you can get a character’s code point by using ?:
+?(
+?d
+?1
+
+# You can also use the functions in the String module to split a string in its individual characters, each one as a string of length 1:
+String.codepoints("hełło")
+# ["h", "e", "ł", "ł", "o"]
+
+
 
 #elixir strings are nothing but a sequence of bytes
 string = <<104,101,108,108,111>>
@@ -54,7 +67,8 @@ dollar <> <<0>>
 
 
 
-#
+###########################################################################################################################
+
 
 #CHAR LISTs
 # Internally, Elixir strings are represented with a sequence of bytes rather than an array of characters. Elixir also has a char list type (character list). Elixir strings are enclosed with double quotes, while char lists are enclosed with single quotes.
@@ -75,8 +89,18 @@ Enum.reduce(char_list, "", fn char, acc -> acc <> to_string(char) <> "," end)
 
 # When programming in Elixir, we usually use Strings, not char lists. The char lists support is mainly included because it is required for some Erlang modules.
 
+is_list 'hełło'
 
+List.first('hello')
 
+to_charlist "hełło"
+
+to_string 'hełło'
+
+to_string :hello
+
+to_string 1
+###########################################################################################################################
 
 # Graphemes and Codepoints
 # Codepoints are just simple Unicode characters which are represented by one or more bytes, depending on the UTF-8 encoding. Characters outside of the US ASCII character set will always encode as more than one byte. For example, Latin characters with a tilde or accents (á, ñ, è) are typically encoded as two bytes. Characters from Asian languages are often encoded as three or four bytes. Graphemes consist of multiple codepoints that are rendered as a single character.
@@ -97,3 +121,25 @@ is_binary("hellö")
 
 #string functions
 String.upcase("hellö")
+
+###########################################################################################################################
+
+#Binaries(and bitstrings)
+# In Elixir, you can define a binary using <<>>:
+
+<<0, 1, 2, 3>>
+# <<0, 1, 2, 3>>
+byte_size(<<0, 1, 2, 3>>)
+# 4
+
+# A binary is a sequence of bytes. Those bytes can be organized in any way, even in a sequence that does not make them a valid string:
+String.valid?(<<239, 191, 191>>)
+# false
+
+# The string concatenation operation is actually a binary concatenation operator:
+<<0, 1>> <> <<2, 3>>
+# <<0, 1, 2, 3>>
+
+# A common trick in Elixir is to concatenate the null byte <<0>> to a string to see its inner binary representation:
+"hełło" <> <<0>>
+# <<104, 101, 197, 130, 197, 130, 111, 0>>

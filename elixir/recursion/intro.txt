@@ -1,0 +1,31 @@
+Recursion
+
+    Loops through recursion
+    Reduce and map algorithms
+
+###########################################################################################################################
+Loops through recursion
+
+Due to immutability, loops in Elixir (as in any functional programming language) are written differently from imperative languages. For example, in an imperative language like C, one would write:
+
+for(i = 0; i < sizeof(array); i++) {
+  array[i] = array[i] * 2;
+}
+
+In the example above, we are mutating both the array and the variable i. Mutating is not possible in Elixir. Instead, functional languages rely on recursion: a function is called recursively until a condition is reached that stops the recursive action from continuing. No data is mutated in this process. Consider the example below that prints a string an arbitrary number of times:
+
+defmodule Recursion do
+  def print_multiple_times(msg, n) when n <= 1 do
+    IO.puts msg
+  end
+
+  def print_multiple_times(msg, n) do
+    IO.puts msg
+    print_multiple_times(msg, n - 1)
+  end
+end
+
+Recursion.print_multiple_times("Hello!", 3)
+# Hello!
+# Hello!
+# Hello!

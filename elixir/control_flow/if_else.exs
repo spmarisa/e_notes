@@ -7,11 +7,14 @@
 # in the end we will use map and reduce
 # elixir doesnt have a "for" or "while" loop
 # elixir accomplishes this functionality with recursion
-#
+
 # EDGE CASE
 # how to handle an empty list
 
 # It should be noted that in Elixir, the only falsey values are nil and the boolean false.
+
+# Besides case and cond, Elixir also provides the macros if/2 and unless/2 which are useful when you need to check for only one condition:
+
 
 
 list = []
@@ -45,3 +48,21 @@ else
     "WoW"
   end
 end
+
+
+# do/end blocks
+
+# At this point, we have learned four control structures: case, cond, if, and unless, and they were all wrapped in do/end blocks. It happens we could also write if as follows:
+
+if true, do: 1 + 2
+if false, do: :this, else: :that
+
+if true do
+ a = 1 + 2
+ a + 10
+end
+
+if true, do: (
+ a = 1 + 2
+ a + 10
+)

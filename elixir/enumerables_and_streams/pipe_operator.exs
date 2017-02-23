@@ -16,3 +16,9 @@ other_function() |> new_function() |> baz() |> bar() |> foo()
 foo 1 |> bar 2 |> baz 3
 # is ambiguous and should be written as
 foo(1) |> bar(2) |> baz(3)
+
+
+
+Enum.sum(Enum.filter(Enum.map(1..100_000, &(&1 * 3)), odd?))
+
+1..100_000 |> Enum.map(&(&1 * 3)) |> Enum.filter(odd?) |> Enum.sum

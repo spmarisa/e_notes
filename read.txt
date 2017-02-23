@@ -1,0 +1,57 @@
+Getting Started
+
+        Introduction
+        Basic types
+        Basic operators
+        Pattern matching
+        case, cond and if
+        Binaries, strings and char lists
+        Keywords and maps
+        Modules and Functions
+        Recursion
+        Enumerables and streams
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        Processes
+        IO and the file system
+        alias, require and import
+        Module attributes
+        Structs
+        Protocols
+        Comprehensions
+        Sigils
+        try, catch and rescue
+        Typespecs and behaviours
+        Erlang libraries
+        Where to go next
+
+Mix and OTP
+
+        Introduction to Mix
+        Agent
+        GenServer
+        Supervisor and Application
+        ETS
+        Dependencies and umbrella apps
+        Task and gen-tcp
+        Docs, tests and with
+        Distributed tasks and configuration
+
+    Meta-programming in Elixir
+
+        Quote and unquote
+        Macros
+        Domain Specific Languages
+
+
+
+
+
+#####################################################
+collections
+control structures
+pipe operator
+mix - custom mix tasks
+documentation
+testing
+comprehensions
+iex helper
