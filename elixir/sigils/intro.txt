@@ -1,3 +1,5 @@
+One of Elixir’s goals is extensibility: developers should be able to extend the language to fit any particular domain. Computer science has become such a wide field that it is impossible for a language to tackle many fields as part of its core. Rather, our best bet is to make the language extensible, so developers, companies, and communities can extend the language to their relevant domains.
+
 Working with and creating sigils.
 
 

@@ -4,7 +4,14 @@ Basics
 Filters
 Using :into
 
+Generators and filters
+Bitstring Generators
+the :into option
+
+
 # Often times comprehensions can be used to produce more concise statements for Enum and Stream iteration. Let’s start by looking at a simple comprehension and then break it down:
+
+for n <- [1, 2, 3, 4], do: n * n
 
 list = [1, 2, 3, 4, 5]
 for x <- list, do: x*x

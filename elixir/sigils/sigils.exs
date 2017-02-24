@@ -1,4 +1,9 @@
+# Strings, char lists, and word lists sigils
+# Besides regular expressions, Elixir ships with three other sigils.
+
+
 #char list
+# The ~c sigil is useful for generating char lists that contain single quotes:
 ~c/2 + 7 = #{2 + 7}/
 ~C/2 + 7 = #{2 + 7}/
 
@@ -21,6 +26,8 @@ Regex.split(~r/_/, string)
 
 
 #String
+# The ~s sigil is used to generate strings, like double quotes are. The ~s sigil is useful when a string contains double quotes:
+
  ~s/the cat in the hat on the mat/
  ~S/the cat in the hat on the mat/
 
@@ -60,3 +67,26 @@ end
 import MySigils
 
 ~U/elixir school/
+
+
+
+
+
+
+
+# The following escape codes can be used in strings and char lists:
+    
+    # \\ – single backslash
+    # \a – bell/alert
+    # \b – backspace
+    # \d - delete
+    # \e - escape
+    # \f - form feed
+    # \n – newline
+    # \r – carriage return
+    # \s – space
+    # \t – tab
+    # \v – vertical tab
+    # \0 - null byte
+    # \xDD - represents a single byte in hexadecimal (such as \x13)
+    # \uDDDD and \u{D...} - represents a Unicode codepoint in hexadecimal (such as \u{1F600})

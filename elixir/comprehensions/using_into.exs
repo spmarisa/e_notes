@@ -13,3 +13,8 @@ for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
 # "Hello"
 
 # That’s it! List comprehensions are an easy way to iterate through collections in a concise manner.
+
+
+ # a bitstring generator can be used with the :into option in order to easily remove all spaces in a string:
+
+for <<c <- " hello world ">>, c != ?\s, into: "", do: <<c>>

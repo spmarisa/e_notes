@@ -1,12 +1,12 @@
-# what protocols are and how we ue them
-
-# What Are Protocols
-
-# So what are they?
 # Protocols are a means of achieving polymorphism in Elixir.
+# Dispatching on a protocol is available to any data type as long as it implements the protocol.
+
 # One pain of Erlang is extending an existing API for newly defined types.
+
 # To avoid this in Elixir the function is dispatched dynamically based on the value’s type.
+
 # Elixir comes with a number of protocols built in, for example the String.Chars protocol is responsible for the to_string/1 function we’ve seen used previously.
+
 # Let’s take a closer look at to_string/1 with a quick example:
 
 to_string(5)

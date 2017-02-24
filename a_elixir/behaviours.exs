@@ -1,6 +1,6 @@
 # We learned about Typespecs in the previous lesson, here we’ll learn how to require a module to implement those specifications. In Elixir, this functionality is referred to as behaviours.
 
-#####################################################################################################################################
+#############################################################################################################################
 # USES
 # Sometimes you want modules to share a public API, the solution for this in Elixir is behaviours. Behaviours perform two primary roles:
 
