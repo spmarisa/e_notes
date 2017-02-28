@@ -1,0 +1,23 @@
+Every time we need to look up a bucket, we need to send a message to the registry. In case our registry is being accessed concurrently by multiple processes, the registry may become a bottleneck!
+
+In this chapter we will learn about ETS (Erlang Term Storage) and how to use it as a cache mechanism.
+
+#################################################################################################################################
+ETS AS CACHE
+
+ETS allows us to store any Elixir term in an in-memory table. Working with ETS tables is done via Erlang’s :ets module:
+
+table = :ets.new(:buckets_registry, [:set, :protected])
+#8207
+:ets.insert(table, {"foo", self()})
+#true
+:ets.lookup(table, "foo")
+#[{"foo", #PID<0.41.0>}]
+
+
+#################################################################################################################################
+RACE CONDITIONS
+
+mix test --trace
+
+The --trace option is useful when your tests are deadlocking or there are race conditions, as it runs all tests synchronously (async: true has no effect) and shows detailed information about each test. This time we should be down to one or two intermittent failures:

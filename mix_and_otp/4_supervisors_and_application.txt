@@ -6,3 +6,62 @@ When things fail, your first reaction may be: “let’s rescue those errors”.
 In this chapter, we are going to learn about supervisors and also about applications. We are going to create not one, but two supervisors, and use them to supervise our processes.
 
 ##############################################################################################################################
+Creating a supervisor is not much different from creating a GenServer.
+
+We are going to define a module named KV.Supervisor, which will use the Supervisor behaviour, inside the lib/kv/supervisor.ex file:
+
+
+iex -S mix
+
+manually start the supervisor
+
+
+KV.Supervisor.start_link
+#{:ok, #PID<0.66.0>}
+
+KV.Registry.create(KV.Registry, "shopping")
+#:ok
+
+KV.Registry.lookup(KV.Registry, "shopping")
+#{:ok, #PID<0.70.0>}
+
+When we started the supervisor, the registry worker was automatically started, allowing us to create buckets without the need to manually start it.
+
+In practice we rarely start the application supervisor manually. Instead it is started as part of the application callback.
+
+##############################################################################################################################
+UNDERSTANDING APPLICATIONS
+
+We have been working inside an application this entire time. Every time we changed a file and ran mix compile, we could see a Generated kv app message in the compilation output.
+
+We can find the generated .app file at _build/dev/lib/kv/ebin/kv.app. Let’s have a look at its contents:
+
+
+#STARTING APPLICATIONS
+#THE APPLICATION CALLBACK
+#PROJECTS OR APPLICATIONS?
+
+
+##############################################################################################################################
+SIMPLE ONE FOR ONE SUPERVISORS
+
+Links are bi-directional, which implies that a crash in a bucket will crash the registry. Although we now have the supervisor, which guarantees the registry will be back up and running, crashing the registry still means we lose all data associating bucket names to their respective processes.
+
+In other words, we want the registry to keep on running even if a bucket crashes. Let’s write a new registry test:
+
+
+
+
+##############################################################################################################################
+SUPERVISION TREES
+In order to use the buckets supervisor in our application, we need to add it as a child of KV.Supervisor. Notice we are beginning to have supervisors that supervise other supervisors, forming so-called “supervision trees”.
+
+
+##############################################################################################################################
+OBSERVER
+
+
+##############################################################################################################################
+SHARED STATE IN TESTS
+
+So far we have been starting one registry per test to ensure they are isolated:
