@@ -13,6 +13,7 @@ defmodule HelloPhoenix.Router do
     plug :accepts, ["json"]
   end
 
+
   scope "/", HelloPhoenix do
     pipe_through :browser # Use the default browser stack
 
@@ -31,11 +32,23 @@ defmodule HelloPhoenix.Router do
     end
   end
 
-  scope "/admin" do
+  scope "/admin", HelloPhoenix.Admin, as: :admin do
     pipe_through :browser
-    resources "/reviews", HelloPhoenix.Admin.ReviewController
+
+    resources "/images",  ImageController
+    resources "/reviews", ReviewController
+    resources "/users",   UserController
   end
 
+  scope "/api", HelloPhoenix.Api, as: :api do
+    pipe_through :api
+
+    scope "/v1", V1, as: :v1 do
+      resources "/images",  ImageController
+      resources "/reviews", ReviewController
+      resources "/users",   UserController
+    end
+  end
 
   # Other scopes may use custom stacks.
   # scope "/api", HelloPhoenix do

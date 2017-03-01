@@ -1,0 +1,17 @@
+plug lives at the heart of Pheonix's http layer
+
+phoenix puts plug front adn center, we interact with plugs at every step of the connection life cycle
+
+core Phoenix components like Endpoints, Routers, and Controllers are all just Plugs internally
+
+
+PLUG is a specification for composable modules in between web applications. It is also an abstraction layer for connection adapters of different web servers. The basic idea of Plug is to unify the concept of a "connection" that we operate on. This differs from other HTTP middleware layers such as Rack, where the request and response are separated in the middleware stack.
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+THE PLUG SPECIFICATION
+At the simplest level, the Plug specification comes in two flavors, function plugs and module plugs
+
+Function Plugs
+In order to act as a plug, a function simply needs to accept a connection struct (%Plug.Conn{}) and options. It also needs to return the connection struct. Any function that meets those criteria will do. Here's an example.

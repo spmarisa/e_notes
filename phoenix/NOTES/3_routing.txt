@@ -121,3 +121,100 @@ end
 scope "/admin" do
   resources "/reviews", HelloPhoenix.Admin.ReviewController
 end
+
+#the problem comes with path helper
+#We can fix this problem by adding an as: :admin option to our admin scope
+
+
+#The path helpers now return what we want them to as well
+iex -S mix
+
+alias HelloPhoenix.Endpoint
+
+HelloPhoenix.Router.Helpers.review_path(Endpoint, :index)
+
+HelloPhoenix.Router.Helpers.admin_review_path(Endpoint, :show, 1234)
+
+
+
+
+
+
+What if we had a number of resources that were all handled by admins? We could put all of them inside the same scope like this:
+
+scope "/admin", as: :admin do
+  pipe_through :browser
+
+  resources "/images",  HelloPhoenix.Admin.ImageController
+  resources "/reviews", HelloPhoenix.Admin.ReviewController
+  resources "/users",   HelloPhoenix.Admin.UserController
+end
+
+scope "/admin", HelloPhoenix.Admin, as: :admin do
+  pipe_through :browser
+
+  resources "/images",  ImageController
+  resources "/reviews", ReviewController
+  resources "/users",   UserController
+end
+
+
+
+
+
+
+
+
+
+
+#for versioned api's
+
+
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#PIPELINES
+
+
+pipe_through :browser
+
+  we described plugs as being stacked and executable in a pre-determined order, like a pipeline? Now we're going to take a closer look at how these plug stacks work in the router.
+
+
+Pipelines are simply plugs stacked up together in a specific order and given a name
+
+#END POINT PLUGS
+
+
+
+
+
+
+When the server accepts a request, the request will always first pass through the plugs in our Endpoint, after which it will attempt to match on the path and HTTP verb.
+
+
+
+What if we need to pipe requests through both :browser and one or more custom pipelines? We simply pipe_through a list of pipelines, and Phoenix will invoke them in order.
+
+pipe_through [:browser, :review_checks, :other_great_stuff]
+
+
+#CREATING NEW PIPELINES
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+#CHANNEL ROUTES
+
+Channels are a very exciting, real-time component of the Phoenix framework.
+
+Channels handle incoming and outgoing messages broadcast over a socket for a given topic.
+
+Channel routes, then, need to match requests by socket and topic in order to dispatch to the correct channel.
+
+
+
+
+We mount socket handlers in our endpoint at lib/hello_phoenix/endpoint.ex. Socket handlers take care of authentication callbacks and channel routes.

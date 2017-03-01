@@ -18,7 +18,11 @@ Phoenix assumes that our PostgreSQL database will have a "postgres" user account
 
 cd hello_phoenix
 
+mix deps.get
+
 mix ecto.create
+
+npm install
 
 And finally, we'll start the Phoenix server:
 
