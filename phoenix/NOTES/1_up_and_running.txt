@@ -1,0 +1,25 @@
+mix phoenix.new hello_phoenix
+
+We are all set! Run your Phoenix application:
+
+    $ cd hello_phoenix
+    $ mix phoenix.server
+
+You can also run your app inside IEx (Interactive Elixir) as:
+
+    $ iex -S mix phoenix.server
+
+Before moving on, configure your database in config/dev.exs and run:
+
+    $ mix ecto.create
+
+Phoenix assumes that our PostgreSQL database will have a "postgres" user account with the correct permissions and a password of "postgres". If that isn't the case, please see the instructions for the ecto.create mix task.
+
+
+cd hello_phoenix
+
+mix ecto.create
+
+And finally, we'll start the Phoenix server:
+
+mix phoenix.server

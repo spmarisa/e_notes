@@ -1,0 +1,25 @@
+Phoenix is a web development framework written in Elixir which implements the server-side MVC pattern. Many of its components and concepts will seem familiar to those of us with experience in other web frameworks like Ruby on Rails or Python's Django.
+
+high developer productivity and high application performance
+
+channels for implementing realtime features and pre-compiled templates for blazing speed.
+
+you can build anything from html5 apps, single page apps, multi page app, api backends and distributed systems
+
+PHEONIX
+ELIXIR
+ERLANG
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+REQUEST LIFECYCLE
+
+endpoints
+routers
+controllers
+
+a web server abstraction called plug, plug allows you towrite functions where you will have midleware
+
+if you dont understand a error message in elixir you should consider that a bug
+
+present a brief, high-level overview of Phoenix, the parts that make it up, and the layers underneath that support it.

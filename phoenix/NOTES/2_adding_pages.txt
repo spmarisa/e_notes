@@ -1,0 +1,15 @@
+add 2 new pages to pheonix app
+One will be a purely static page
+the other will take part of the path from the URL as input and pass it through to a template for display
+
+
+ The first is conn, a struct which holds a ton of data about the request.
+
+ The second is params, which are the request parameters. Here, we are not using params, and we avoid compiler warnings by adding the leading _.
+
+
+
+ For example, if we point the browser at: http://localhost:4000/hello/Frank, the value of ":messenger" will be "Frank".
+
+
+mix compile

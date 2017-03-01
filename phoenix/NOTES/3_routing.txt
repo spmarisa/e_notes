@@ -1,0 +1,123 @@
+mix do deps.get, compile
+
+mix phoenix.routes
+
+
+#RESOURCES
+resources "/users", UserController
+resources "/posts", PostController, only: [:index, :show]
+resources "/comments", CommentController, except: [:delete]
+
+
+
+#PATH_HELPERS
+Path helpers are functions which are dynamically defined on the Router.Helpers module for an individual application. For us, that is HelloPhoenix.Router.Helpers. Their names are derived from the name of the controller used in the route definition. Our controller is HelloPhoenix.PageController, and page_path is the function which will return the path to the root of our application.
+
+Let's see it in action.
+iex -S mix
+
+When we call the page_path function on our router helpers with the Endpoint or connection and action as arguments, it returns the path to us.
+
+iex> HelloPhoenix.Router.Helpers.page_path(HelloPhoenix.Endpoint, :index)
+"/"
+
+
+import HelloPhoenix.Router.Helpers
+page_path(HelloPhoenix.Endpoint, :index)
+#page_path(@conn, :index)
+
+
+
+
+#MORE ON PATH HELPERS
+
+import HelloPhoenix.Router.Helpers
+alias HelloPhoenix.Endpoint
+user_path(Endpoint, :index)
+#"/users"
+
+user_path(Endpoint, :show, 17)
+#"/users/17"
+
+user_path(Endpoint, :new)
+#"/users/new"
+
+user_path(Endpoint, :create)
+#"/users"
+
+user_path(Endpoint, :edit, 37)
+#"/users/37/edit"
+
+user_path(Endpoint, :update, 37)
+#"/users/37"
+
+user_path(Endpoint, :delete, 17)
+#"/users/17"
+
+
+
+#What about paths with query strings? By adding an optional fourth argument of key value pairs, the path helpers will return those pairs in the query string.
+user_path(Endpoint, :show, 17, admin: true, active: false)
+
+
+#for a full url
+user_url(Endpoint, :index)
+
+
+
+
+
+
+
+
+
+
+#NESTED RESOURCES
+
+resources "/users", UserController do
+  resources "/posts", PostController
+end
+
+
+alias HelloPhoenix.Endpoint
+HelloPhoenix.Router.Helpers.user_post_path(Endpoint, :show, 42, 17)
+
+HelloPhoenix.Router.Helpers.user_post_path(Endpoint, :index, 42, active: true)
+
+
+
+
+
+
+
+
+#SCOPED ROUTES
+Scopes are a way to group routes under a common path prefix and scoped set of plug middleware
+We might want to do this for admin functionality, APIs, and especially for versioned APIs
+
+/admin/reviews
+/admin/reviews/1234
+/admin/reviews/1234/edit
+. . .
+
+scope "/admin" do
+  pipe_through :browser
+
+  resources "/reviews", HelloPhoenix.Admin.ReviewController
+end
+
+
+
+
+#some edge case like this
+
+scope "/", HelloPhoenix do
+  pipe_through :browser
+  . . .
+  resources "/reviews", ReviewController
+  . . .
+end
+
+scope "/admin" do
+  resources "/reviews", HelloPhoenix.Admin.ReviewController
+end
