@@ -1,0 +1,205 @@
+controllers act as intermediary modules.
+
+Their functions - called actions - are invoked from the router in response to HTTP requests.
+
+The actions, in turn, gather all the necessary data and perform all the necessary steps before invoking the view layer to render a template or returning a JSON response.
+
+Phoenix controllers also build on the Plug package, and are themselves plugs. Controllers provide the functions to do almost anything we need to in an action. If we do find ourselves looking for something that Phoenix controllers don't provide; however, we might find what we're looking for in Plug itself.
+
+
+CONTROLLER - ACTION
+
+index - renders a list of all items of the given resource type
+show - renders an individual item by id
+new - renders a form for creating a new item
+create - receives params for one new item and saves it in a datastore
+edit - retrieves an individual item by id and displays it in a form for editing
+update - receives params for one edited item and saves it to a datastore
+delete - receives an id for an item to be deleted and deletes it from a datastore
+
+Each of these actions takes two parameters, which will be provided by Phoenix behind the scenes.
+
+The first parameter is always conn, a struct which holds information about the request such as the host, path elements, port, query string, and much more.
+conn, comes to Phoenix via Elixir's Plug middleware framework.
+
+The second parameter is params.
+this is a map which holds any parameters passed along in the HTTP request.
+It is a good practice to pattern match against params in the function signature to provide data in a simple package we can pass on to rendering.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+GATHERING DATA
+
+While Phoenix does not ship with its own data access layer, the Elixir project Ecto provides a very nice solution for those using the Postgres relational database.
+
+Of course, there are many other data access options. Ets and Dets are key value data stores built into OTP. OTP also provides a relational database called mnesia with its own query language called QLC. Both Elixir and Erlang also have a number of libraries for working with a wide range of popular data stores.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+FLASH MESSAGES
+
+The Phoenix.Controller module provides the put_flash/3 and get_flash/2 functions to help us set and retrieve flash messages as a key value pair.
+
+defmodule HelloPhoenix.PageController do
+  . . .
+  def index(conn, _params) do
+    conn
+    |> put_flash(:info, "Welcome to Phoenix, from flash info!")
+    |> put_flash(:error, "Let's pretend we have an error.")
+    |> render("index.html")
+  end
+end
+
+
+In order to see our flash messages, we need to be able to retrieve them and display them in a template/layout. One way to do the first part is with get_flash/2 which takes conn and the key we care about. It then returns the value for that key.
+
+Besides put_flash/3 and get_flash/2, the Phoenix.Controller module has another useful function worth knowing about. clear_flash/1 takes only conn and removes any flash messages which might be stored in the session.
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+RENDERING
+
+Controllers have several ways of rendering content. The simplest is to render some plain text using the text/2 function which Phoenix provides.
+
+Let's say we have a showshow action which receives an id from the params map, and all we want to do is return some text with the id. For that, we could do the following.
+
+def show(conn, %{"id" => id}) do
+  text conn, "Showing id #{id}"
+end
+
+Assuming we had a route for get "/our_path/:id" mapped to this show action, going to /our_path/15 in your browser should display Showing id 15 as plain text without any HTML.
+
+
+
+
+A step beyond this is rendering pure JSON with the json/2 function. We need to pass it something that the Poison library can parse into JSON, such as a map. (Poison is one of Phoenix's dependencies.)
+
+def show(conn, %{"id" => id}) do
+  json conn, %{id: id}
+end
+
+If we again visit our_path/15 in the browser, we should see a block of JSON with the key id mapped to the number 15.
+
+{"id": "15"}
+
+
+
+
+
+
+Phoenix controllers can also render HTML without a template. As you may have already guessed, the html/2 function does just that. This time, we implement the show action like this.
+
+def show(conn, %{"id" => id}) do
+  html conn, """
+     <html>
+       <head>
+          <title>Passing an Id</title>
+       </head>
+       <body>
+         <p>You sent in id #{id}</p>
+       </body>
+     </html>
+    """
+end
+
+Hitting /our_path/15 now renders the HTML string we defined in the show action, with the value 15 interpolated. Note that what we wrote in the action is not an eex template. It's a multi-line string, so we interpolate the id variable like this #{id} instead of this <%= id %>.
+
+It is worth noting that the text/2, json/2, and html/2 functions require neither a Phoenix view, nor a template to render.
+
+
+
+rendering a template into a layout with values we pass in is a very common case
+Interestingly, render/3 is defined in the Phoenix.View module instead of Phoenix.Controller, but it is aliased in Phoenix.Controller for convenience
+
+def index(conn, _params) do
+  render conn, "index.html"
+end
+
+def show(conn, %{"messenger" => messenger}) do
+  render conn, "show.html", messenger: messenger
+end
+
+
+the HelloController requires HelloView, and HelloView requires the existence of the web/templates/hello directory, which must contain the show.html.eex template.
+
+
+
+
+
+
+
+
+to pass values into the template, when using render
+
+def index(conn, _params) do
+  conn
+  |> assign(:message, "Welcome Back!")
+  |> render("index.html")
+end
+
+We can access this message in our index.html.eex template, or in our layout, with this <%= @message %>.
+
+
+passing more than one value
+
+def index(conn, _params) do
+  conn
+  |> assign(:message, "Welcome Back!")
+  |> assign(:name, "Dweezil")
+  |> render("index.html")
+end
+
+
+
+
+What if we want to have a default welcome message that some actions can override? That's easy, we just use plug and transform conn on its way towards the controller action.
+
+plug :assign_welcome_message, "Welcome Back"
+
+def index(conn, _params) do
+  conn
+  |> assign(:name, "Dweezil")
+  |> render("index.html")
+end
+
+defp assign_welcome_message(conn, msg) do
+  assign(conn, :message, msg)
+end
+
+
+
+
+
+
+
+
+if we want to plug assign_welcome_message, but only for some of our actions? Phoenix offers a solution to this by letting us specify which actions a plug should be applied to. If we only wanted plug :assign_welcome_message to work on the index and show actions, we could do this.
+
+plug :assign_welcome_message, "Hi!" when action in [:index, :show]
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+SENDING RESPONSES DIRECTLY
+
+we can compose our own using some of the functions that Plug gives us. Let's say we want to send a response with a status of "201" and no body whatsoever. We can easily do that with the send_resp/3 function.
+
+def index(conn, _params) do
+  conn
+  |> send_resp(201, "")
+end
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ASSIGNING LAYOUTS
+
+Layouts are just a special subset of templates. They live in /web/templates/layout. Phoenix created one for us when we generated our app. It's called app.html.eex, and it is the layout into which all templates will be rendered by default.
+
+The Phoenix.Controller module provides the put_layout/2 function for us to switch layouts. This takes conn as its first argument and a string for the basename of the layout we want to render. Another clause of the function will match on the boolean false for the second argument, and that's how we will render the Phoenix welcome page without a layout.
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+REDIRECTION

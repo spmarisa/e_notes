@@ -11,7 +11,15 @@ PLUG is a specification for composable modules in between web applications. It i
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 THE PLUG SPECIFICATION
-At the simplest level, the Plug specification comes in two flavors, function plugs and module plugs
+At the simplest level, the Plug specification comes in two flavors
+FUNCTION plugs
+MODULE plugs
 
 Function Plugs
 In order to act as a plug, a function simply needs to accept a connection struct (%Plug.Conn{}) and options. It also needs to return the connection struct. Any function that meets those criteria will do. Here's an example.
+
+Module plugs
+another type of Plug that let us define a connection transformation in a module. The module only needs to implement two functions:
+
+init/1 which initializes any arguments or options to be passed to call/2
+call/2 which carries out the connection transformation. call/2 is just a function plug that we saw earlier

@@ -1,0 +1,26 @@
+files into which we pass data to form complete HTTP responses.
+
+For a web application these responses would typically be full HTML documents. For an API, they would most often be JSON or possibly XML.
+
+The majority of the code in template files is often markup, but there will also be sections of Elixir code for Phoenix to compile and evaluate.
+
+
+
+
+DISPLAYING LISTS
+
+<%= for key <- connection_keys @conn do %>
+  <p><%= key %></p>
+<% end %>
+
+
+
+RENDERING TEMPLATES WITHIN TEMPLATES
+
+Templates are just function calls, so like regular code, composing your greater template by small, purpose-built functions can lead to clearer design. This is simply a continuation of the rendering chain we have already seen. Layouts are templates into which regular templates are rendered. Regular templates may have other templates rendered into them.
+
+
+
+
+
+SHARED TEMPLATES ACROSS VIEWS

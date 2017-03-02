@@ -1,0 +1,22 @@
+views have two main jobs.
+- they render templates
+- Views also provide functions which take raw data and make it easier for templates to consume. If you are familiar with decorators or the facade pattern, this is similar.
+
+
+
+The PageController requires a PageView to render templates in the web/templates/page directory.
+
+
+
+
+
+Phoenix.View.render(HelloPhoenix.PageView, "test.html", %{})
+
+
+
+The view's other job besides rendering templates is to render JSON. Phoenix uses Poison to encode Maps to JSON, so all we need to do in our views is format the data we'd like to respond with as a Map, and Phoenix will do the rest.
+
+
+It is possible to respond with JSON back directly from the controller and skip the View. However, if we think about a controller as having the responsibilities of receiving a request and fetching data to be sent back, data manipulation and formatting don't fall under those responsibilities. A view gives us a module responsible for formatting and manipulating the data.
+
+Let's take our PageController, and see what it might look like when we respond with some static page maps as JSON, instead of HTML.
