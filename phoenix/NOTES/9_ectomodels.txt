@@ -1,0 +1,47 @@
+mix phoenix.gen.html User users name:string email:string bio:string number_of_pets:integer
+
+
+mix ecto.migrate
+
+
+iex -S mix phoenix.server
+
+
+changeset = User.changeset(%User{}, %{})
+
+changeset.valid?
+
+changeset.errors
+
+
+
+
+
+params = %{name: "Joe Example", email: "joe@example.com", bio: "An example to all", number_of_pets: 5, random_key: "random value"}
+
+changeset = User.changeset(%User{}, params)
+
+changeset.valid?
+
+changeset.changes
+
+
+
+
+|> validate_length(:bio, min: 2)
+|> validate_length(:bio, max: 4)
+
+|> validate_format(:email, ~r/@/)
+
+
+
+
+
+
+mix phoenix.gen.model Video videos name:string approved_at:datetime description:text likes:integer views:integer user_id:references:users
+
+
+
+mix do deps.get, compile
+
+mix ecto.gen.repo

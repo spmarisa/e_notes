@@ -25,6 +25,9 @@ defmodule HelloPhoenix.Router do
     get "/hello", HelloController, :index
     get "/hello/:messenger", HelloController, :show
 
+    resources "/users", UserController
+
+
     # resources "/users", UserController
     # resources "/posts", PostController, only: [:index, :show]
     # resources "/comments", CommentController, except: [:delete]
@@ -37,9 +40,9 @@ defmodule HelloPhoenix.Router do
   end
 
   # New route for redirects
-  scope "/", HelloPhoenix do
-    get "/redirect_test", PageController, :redirect_test, as: :redirect_test
-  end
+  # scope "/", HelloPhoenix do
+  #   get "/redirect_test", PageController, :redirect_test, as: :redirect_test
+  # end
 
 
   # scope "/admin", HelloPhoenix.Admin, as: :admin do

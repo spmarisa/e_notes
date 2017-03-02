@@ -41,3 +41,17 @@ CLIENT LIBRARIES ->
 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+BUILDING A CHAT APPLICATION
+
+after generating a new phoenix app. we'll see that the endpoint is already setup for us in lib/hello_phoenix/endpoint.ex
+
+In web/channels/user_socket.ex, the HelloPhoenix.UserSocket we pointed to in our endpoint has already been created when we generated our application. We need to make sure messages get routed to the correct channel.
+
+To do that, uncomment the "room:*" channel definition:
+
+Now, whenever a client sends a message whose topic starts with "room:", it will be routed to our RoomChannel. Next, we'll define a HelloPhoenix.RoomChannel module to manage our chat room messages.
+
+
+
+JOINING CHANNELS
+The first priority of your channels is to authorize clients to join a given topic. For authorization, we must implement join/3 in web/channels/room_channel.ex.
