@@ -1,3 +1,4 @@
+#programming is about transforming data.
 #elixir is immutable
 #if a list is created that list cant change
 langs = ["elixir", "c#", "js"]
@@ -19,3 +20,12 @@ List.insert_at(langs, 0, "c++")
   elixir is rebinding the variable to new data
 
   langs = List.insert_at(langs, 0, "c++")
+
+
+#You just have to remember that any function that transforms data will return a new copy of it
+name = "elixir"
+#"elixir"
+cap_name = String.capitalize name
+#"Elixir"
+name
+#"elixir"

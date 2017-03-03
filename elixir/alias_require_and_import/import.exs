@@ -26,3 +26,13 @@ end
 # In the example above, the imported List.duplicate/2 is only visible within that specific function. duplicate/2 won’t be available in any other function in that module (or any other module for that matter).
 
 # Note that importing a module automatically requires it.
+
+
+"ABC" = String.upcase("abc")
+
+# Import a single function with the form
+# import Module, only: [function_name: arity]
+import String, only: [upcase: 1]
+
+# upcase can now be used without the module name
+"ABC" = upcase("abc")

@@ -10,6 +10,21 @@ list = [foo: "bar", hello: "world", hello: "banana"]
 
 list = [{:foo, "bar"}, {:hello, "world"}]
 
+[{:one, 1}, {:two, 2}] = [one: 1, two: 2]
+
+
+list[:foo]
+
+Keyword.get(list, :foo)
+
+
+#default values can also be passed
+Keyword.get([a: 1, b: 2, a: 3], :c, "missing")
+
+
+#to return a list of matching pairs
+Keyword.take([a: 1, b: 2, a: 3], [:a])
+
 # The three characteristics of keyword lists highlight their importance:
 #    Keys must be atoms.
 #    Keys are ordered, as specified by the developer
@@ -61,3 +76,10 @@ a
 # ** (MatchError) no match of right hand side value: [a: 1, b: 2]
 [b: b, a: a] = [a: 1, b: 2]
 # ** (MatchError) no match of right hand side value: [a: 1, b: 2]
+
+
+
+
+#keyword list to map
+Enum.into( [a: 1, b: 2, c: 3], %{} )
+%{a: 1, b: 2, c: 3} = Enum.into( [a: 1, b: 2, c: 3], %{} )

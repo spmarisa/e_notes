@@ -3,6 +3,10 @@
 # Match Operator
 #Elixir, the = operator is actually a match operator, comparable to the equals sign in algebra. Writing it turns the whole expression into an equation and makes Elixir match the values on the left hand with the values on the right hand. If the match succeeds, it returns the value of the equation. Otherwise, it throws an error. Let’s take a look:
 
+#Instead it’s like an assertion. It succeeds if Elixir can find a way of making the left-hand side equal the right-hand side. Elixir calls = a match operator.
+
+#Erlang’s creator, compares the equals sign in Erlang to that used in algebra. When you write the equation x = a + 1, you are not assigning the value of a + 1 to x. Instead you’re simply asserting that the expressions x and a + 1 have the same value. If you know the value of x, you can work out the value of a, and vice versa.
+
 x = 1
 1 = x
 2 = x
@@ -93,3 +97,15 @@ greet.("Hello", "Sean")
 # "Hi Sean"
 greet.("Mornin'", "Sean")
 # "Mornin', Sean"
+
+
+list = [1, 2, 3]
+[a, 2, b] = list
+
+list = [14, 26, 332]
+[a, _, b] = list
+
+
+#VALUES BIND ONCE PER MATCH
+[a, a] = [1, 1]
+[b, b] = [1, 2]

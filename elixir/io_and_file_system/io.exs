@@ -12,3 +12,13 @@
  IO.puts :stderr, "hello world"
 # hello world
 # :ok
+
+
+#print map
+%{key: 42} = IO.inspect(%{key: 42})
+IO.inspect(%{key: 42})
+
+
+#print a list
+[1, 2, 3] = IO.inspect([1, 2, 3])
+IO.inspect([1, 2, 3])

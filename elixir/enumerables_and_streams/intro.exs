@@ -41,6 +41,11 @@ Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 #map
 #To apply our function to each item and produce a new collection look to the map function:
 Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
+Enum.map([1, 2, 3], fn(i) -> i * 2 end)
+
+Enum.map(%{ one: 1, two: 2}, fn({k, v}) -> k end)
+Enum.map([c: 1, d: 2], fn({k, v}) -> v end)
+Enum.map([1, 2, 3], fn(i) -> {:a , i * 2} end)
 
 # min
 # min/1 finds the min value in the collection:
@@ -61,6 +66,8 @@ Enum.max([], fn -> :bar end)
 Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
+6 = Enum.reduce(%{ a: 1, b: 2, c: 3 }, 0, fn({_k, v}, acc) -> v + acc end)
+
 
 
 #sort
@@ -78,3 +85,8 @@ Enum.sort([%{:count => 4}, %{:count => 1}])
 # uniq_by
 # We can use uniq_by/2 to remove duplicates from our collections:
 Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+
+
+#SUM
+Enum.sum([1, 2, 3])
+6 == Enum.sum(1..3)

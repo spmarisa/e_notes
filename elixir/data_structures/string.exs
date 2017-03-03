@@ -18,6 +18,8 @@ is_binary(string)
 # You can also use the functions in the String module to split a string in its individual characters, each one as a string of length 1:
 String.codepoints("hełło")
 # ["h", "e", "ł", "ł", "o"]
+String.graphemes("Test")
+#["T", "e", "s", "t"]
 
 
 
@@ -36,6 +38,17 @@ String.duplicate("Oh my ", 3)
 # "Oh my Oh my Oh my "
 
 String.split("Hello World", " ")
+["1", "2", "3"] = String.split("1,2,3" , ",")
+
+#parse string to float
+{3.14, ""} = Float.parse("3.14")
+#parse atring to int
+{4, ""} = Integer.parse("4")
+
+
+
+String.reverse("abc")
+
 
 # combine two string using concatinate
 hello = "Hello, "
@@ -121,6 +134,25 @@ is_binary("hellö")
 
 #string functions
 String.upcase("hellö")
+String.downcase("HELLO")
+
+
+String.at("Hello", 0)
+
+true = String.ends_with?("Period.", ".")
+true  = String.ends_with?("Period.", [".","?"])
+false = String.ends_with?("      !", [".","?"])
+
+
+"hello" = Atom.to_string(:hello)
+
+
+#join a list of strings
+Enum.join(["1","2","3"], ",")
+
+
+"a" = String.strip("    a     ")
+
 
 ###########################################################################################################################
 

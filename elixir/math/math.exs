@@ -49,3 +49,7 @@ round(3.58)
 
 # the trunc function to get the integer part of a float.
 trunc(3.58)
+
+
+#RAISE NUMBER TO A POWER
+8.0 = :math.pow(2, 3)

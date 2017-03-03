@@ -45,3 +45,13 @@ tuple
 # {:ok, "hello"}
 
 # Notice that put_elem/3 returned a new tuple. The original tuple stored in the tuple variable was not modified because Elixir data types are immutable. By being immutable, Elixir code is easier to reason about as you never need to worry that any code might be mutating your data structure in place.
+
+
+
+
+#pattern matching
+{:ok, result} = {:ok, "good"}
+
+
+#tuple to list
+[:a, :b, :c] = Tuple.to_list({:a, :b, :c})

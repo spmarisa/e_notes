@@ -1,5 +1,10 @@
 mix phoenix.gen.html User users name:string email:string bio:string number_of_pets:integer
 
+mix ecto.gen.migration add_author_to_post
+
+mix ecto.migrate
+mix ecto.rollback
+
 
 mix ecto.migrate
 

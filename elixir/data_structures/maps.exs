@@ -4,6 +4,18 @@
 #maps are more efficient than key word lists
 
 
+#ELIXIR MAP syntax
+# empty map
+%{}
+
+# map arrow syntax
+%{"one" => 1, "two" => 2}
+
+# shorthand when keys are atoms
+%{ one: 1, two: 2}
+
+
+
 my_map = %{1 => {"banana", "coconut"}, 2 => {"chicken", "fish"}}
 
 # %{} defines an empty map
@@ -19,6 +31,10 @@ other_map["sleep"]
 
 #if our key is an atom
 other_map.food
+
+#SIZE OF MAP
+map_size(%{a: 1})
+1 = map_size(%{a: 1})
 
 
 
@@ -88,6 +104,27 @@ Map.put(%{:a => 1, 2 => :b}, :c, 3)
 Map.to_list(%{:a => 1, 2 => :b})
 # [{2, :b}, {:a, 1}]
 
+a = %{1 => "a", 2 => "b"}
+Map.put(a, 3, "c")
+
+Map.put(%{a: 1}, :b, 2)
+
+
+
+
+%{a: "New Value"} = %{  %{ a: "Old Value" } | a: "New Value" }
+
+# Note that this does not work to add a new key
+%{ %{} | new_key: 1}
+# Raises (KeyError) key :new_key not found in: %{}
+
+# Map.put/3 will add a key if it does not exist
+%{new_key: 1} = Map.put(%{}, :new_key, 1)
+# or update the value if it does exit
+%{new_key: 2} = Map.put(%{new_key: 1}, :new_key, 2)
+
+
+
 
 #updating a key's value
 map = %{:a => 1, 2 => :b}
@@ -102,7 +139,62 @@ map = %{:a => 1, 2 => :b}
 
 #Another interesting property of maps is that they provide their own syntax for accessing atom keys:
  map = %{:a => 1, 2 => :b}
-
  map.a
-
  map.c
+
+
+
+#get a value from nested maps
+nested = %{ one: %{ two: 3} }
+
+3 = get_in(nested, [:one, :two])
+
+# Returns nil for missing value
+nil = get_in(nested, [:one, :three])
+
+
+
+
+#patternmatching
+%{c: value} = %{c: 1}
+
+
+#default value can be specified in case key doesnot exist
+"default" = Map.get(%{c: 1}, :a, "default")
+
+
+{:ok, value} = Map.fetch(%{c: 1}, :c)
+:error       = Map.fetch(%{c: 1}, :a)
+
+1 = Map.fetch!(%{c: 1}, :c)
+
+# Raises a key error
+Map.fetch!(%{c: 1}, :a)
+
+
+
+#map to keyword list
+[one: 1, two: 2] = Map.to_list(%{one: 1, two: 2})
+
+
+#map to struct
+defmodule User do
+  defstruct username: nil
+end
+
+%User{username: "test" } = struct(User, %{username: "test", password: "secret"})
+
+# struct! raises KeyError if un-matching keys provided
+%User{username: "test" } = struct!(User, %{username: "test", password: "secret"})
+
+
+
+
+
+#PATTERNMATCH ON MAP
+%{ b: value, d: value2 } = %{ a: 1, b: 2, d: 3 }
+
+%{ a: value } = %{ a: 1, b: 2, d: 3 }
+
+#throws an error
+%{ c: value } = %{ a: 1, b: 2 }

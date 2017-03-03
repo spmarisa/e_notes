@@ -40,3 +40,17 @@ not false
 
 
 # As a rule of thumb, use and, or and not when you are expecting booleans. If any of the arguments are non-boolean, use &&, || and !.
+
+
+
+
+
+#The in operator tests for membership using === within an enumerable.
+
+true = "one" in ["one", "two"]
+
+# `in` is equivalent to calling Enum.member?/2
+Enum.member?(["one", "two"], "one")
+
+true = {:a, 1} in %{a: 1, b: 2}
+true = 1 in 1..4

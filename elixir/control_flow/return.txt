@@ -1,0 +1,22 @@
+#in ruby
+def hello
+  if some_condition
+     return "Goodbye"
+  end
+  do_this()
+  do_something()
+end
+
+
+#in elixir
+def hello do
+  if some_condition do
+    "Goodbye"
+  else
+     do_this()
+     do_something()
+  end
+end
+
+
+#Case and cond can also be used to return different values based on a condition.

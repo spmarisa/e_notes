@@ -71,11 +71,14 @@ import MySigils
 
 
 
+#WORD LIST
+["one", "two", "three"] = ~w(one two three)
+
 
 
 
 # The following escape codes can be used in strings and char lists:
-    
+
     # \\ – single backslash
     # \a – bell/alert
     # \b – backspace

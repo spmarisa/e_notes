@@ -22,3 +22,9 @@ foo(1) |> bar(2) |> baz(3)
 Enum.sum(Enum.filter(Enum.map(1..100_000, &(&1 * 3)), odd?))
 
 1..100_000 |> Enum.map(&(&1 * 3)) |> Enum.filter(odd?) |> Enum.sum
+
+
+
+"a, b, c" |> String.split(",") |> Enum.map( &String.upcase/1 )
+
+Enum.map(String.split("a,b,c", ","), &String.upcase/1)

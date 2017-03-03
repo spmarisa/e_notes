@@ -17,3 +17,8 @@ Features:
 #defmodule is not a keyword, its a macro
 #elixirs ability to metaprogram with macros
 #elixir is able to do what it does is because of its macros
+
+The Elixir programming language wraps functional programming with
+immutable state and an actor-based approach to concurrency in a tidy,
+modern syntax. And it runs on the industrial-strength, high-performance,
+distributed Erlang VM. But what does all that mean?

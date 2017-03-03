@@ -1,0 +1,200 @@
+mix new portal --sup
+
+cd portal
+
+mix test
+
+
+
+
+_build  -  where Mix stores compilation artifacts
+config  -  where we configure our project and its dependencies
+lib     -  where we put our code
+mix.exs -  where we define our project name, version and dependencies
+test    -  where we define our tests
+
+
+#We can now start an iex session inside our project too. Just run:
+iex -S mix
+
+
+#MODELING PORTAL DOORS WITH AGENTS
+#when we need to keep some sort of state, like the data transfering through a portal, we must use an abstraction that stores this state for us. One such abstraction in Elixir is called an agent.
+
+#We use anonymous functions to initialize, get and update the agent state
+
+
+{:ok, agent} = Agent.start_link(fn -> [] end)
+#{:ok, #PID<0.61.0>}
+
+Agent.get(agent, fn list -> list end)
+#[]
+
+Agent.update(agent, fn list -> [0|list] end)
+#:ok
+
+Agent.get(agent, fn list -> list end)
+#[0]
+
+
+
+
+#we will use agents to implement our portal doors. Create a new file named lib/portal/door.ex
+
+iex -S mix
+
+Portal.Door.start_link(:pink)
+#{:ok, #PID<0.68.0>}
+
+Portal.Door.get(:pink)
+#[]
+
+Portal.Door.push(:pink, 1)
+#:ok
+
+Portal.Door.get(:pink)
+#[1]
+
+Portal.Door.pop(:pink)
+#{:ok, 1}
+
+Portal.Door.get(:pink)
+#[]
+
+Portal.Door.pop(:pink)
+#:error
+
+
+
+
+
+#documentation is treated as a first class citizen
+h Portal.Door.start_link
+
+
+
+
+
+#PORTAL TRANSFER
+#Our portal doors are ready so it is time to start working on portal transfers! In order to store the portal data, we are going to create a struct named  Portal. Let’s give structs a try in IEx before moving forward:
+
+
+
+
+defmodule User do
+  defstruct [:name, :age]
+end
+
+user = %User{name: "john doe", age: 27}
+#%User{name: "john doe", age: 27}
+
+user.name
+#"john doe"
+
+%User{age: age} = user
+#%User{name: "john doe", age: 27}
+
+age
+#27
+
+
+
+
+
+
+
+
+
+# Start doors
+Portal.Door.start_link(:orange)
+#{:ok, #PID<0.59.0>}
+
+Portal.Door.start_link(:blue)
+#{:ok, #PID<0.61.0>}
+
+
+# Start transfer
+portal = Portal.transfer(:orange, :blue, [1, 2, 3])
+#%Portal{left: :orange, right: :blue}
+
+
+# Check there is data on the orange/left door
+Portal.Door.get(:orange)
+#[3, 2, 1]
+
+
+# Push right once
+Portal.push_right(portal)
+#%Portal{left: :orange, right: :blue}
+
+
+# See changes
+Portal.Door.get(:orange)
+#[2, 1]
+
+Portal.Door.get(:blue)
+#[3]
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+#INSPECTING PORTALS WITH PROTOCOLS
+
+
+
+Portal.Door.start_link(:orange)
+#{:ok, #PID<0.59.0>}
+
+Portal.Door.start_link(:blue)
+#{:ok, #PID<0.61.0>}
+
+portal = Portal.transfer(:orange, :blue, [1, 2, 3])
+#Portal<
+#    :orange <=> :blue
+#  [1, 2, 3] <=> []
+#>
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+#SHOOTING SUPERVISED DOORS
+
+#Our code so far is not supervised. Let’s see what happens when we explicitly shutdown one of the door agents:
+
+#start doors and transfer
+
+Portal.Door.start_link(:orange)
+#{:ok, #PID<0.59.0>}
+
+Portal.Door.start_link(:blue)
+#{:ok, #PID<0.61.0>}
+
+portal = Portal.transfer(:orange, :blue, [1, 2, 3])
+
+
+# First unlink the door from the shell to avoid the shell from crashing
+Process.unlink(Process.whereis(:blue))
+#true
+
+# Send a shutdown exit signal to the blue agent
+Process.exit(Process.whereis(:blue), :shutdown)
+#true
+
+
+# Try to move data
+Portal.push_right(portal)
+#** (exit) exited in: :gen_server.call(:blue, ..., 5000)
+
+#    ** (EXIT) no process
+#    (stdlib) gen_server.erl:190: :gen_server.call/3
+#    (portal) lib/portal.ex:25: Portal.push_right/1
+
+
+
+
+
+
+
+#setup a supervisor that will be responsible for restarting a portal door whenever it crashes.
+#supervisors typically run inside supervision trees and supervision trees are usually started as part of application
+#All the --sup flag does is to create a supervised structure by default which we can see in our Portal module:

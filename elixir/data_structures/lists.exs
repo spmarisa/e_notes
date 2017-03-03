@@ -66,3 +66,24 @@ options[:notify_user]
 
 #list length
 length([1, 2, 3])
+
+
+
+#get the last item in the list
+List.last([:a, :b, :c])
+:c = List.last([:a, :b, :c])
+
+
+
+
+#FILTER LIST
+Enum.filter( [1, 2, 3, 4], fn(x) -> x > 2 end )
+
+[3, 4] = Enum.filter( [1, 2, 3, 4], fn(x) -> x > 2 end )
+
+
+
+
+#LIST COMPREHENSIONS
+for n <- [1, 2, 3], do: n + n
+[2, 4, 6] = for n <- [1, 2, 3], do: n + n

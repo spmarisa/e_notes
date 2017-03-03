@@ -35,3 +35,49 @@ end
 # However, if you expect the file to be there, the bang variation is more useful as it raises a meaningful error message. Avoid writing:
 
 {:ok, body} = File.read(file)
+
+
+
+#write a string to a file
+:ok = File.write("example.txt","Hello File!")
+
+{:error, reason} = File.write("example.txt","Hello File!")
+
+:ok = File.write!("example2.txt","Hello File!")
+
+
+
+
+#check if a file exist
+true  = File.exists?("exists.txt")
+false = File.exists?("doesnt_exist.txt")
+
+
+
+
+
+#read file using File.stream!
+stream = File.stream!("scratch.txt")
+
+# The stream is read by each line when Enumerated
+Enum.each(stream, fn(x) -> IO.puts x end)
+
+["Line 1\n", "Line 2\n"] = Enum.into(stream, [])
+
+#number of lines
+2 = Enum.reduce(stream, 0, fn(x, acc) -> acc + 1 end)
+
+
+
+
+
+
+
+#read file into a string
+{:ok, contents} = File.read("exists.txt")
+{:error, reason} = File.read("doesnt_exist.txt")
+
+contents = File.read!("exists.txt")
+
+# Raises a File.Error
+contents = File.read!("doesnt_exist.txt")

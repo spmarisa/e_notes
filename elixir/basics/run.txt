@@ -1,0 +1,13 @@
+
+
+
+#write the code in a file called hello.exs
+IO.puts "Hello world from Elixir"
+
+$ elixir hello.exs
+#Hello world from Elixir
+
+
+#We can also compile and run it inside iex using the c helper:
+$ iex
+iex> c "hello.exs"

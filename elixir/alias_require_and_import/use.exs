@@ -22,3 +22,27 @@ defmodule Example do
   require Feature
   Feature.__using__(option: :value)
 end
+
+
+
+
+
+
+
+#BETTER example
+defmodule Hello do
+  defmacro __using__(_opts) do
+    quote do
+      def say_hello do
+        IO.puts "Hello"
+      end
+    end
+  end
+end
+
+defmodule MyModule do
+  use Hello
+end
+
+# prints "Hello"
+MyModule.say_hello
