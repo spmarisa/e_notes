@@ -91,3 +91,16 @@ is_port(variable)
 is_reference(variable)
 is_tuple(variable)
 is_nil(variable)
+
+
+
+
+# system types
+# pid's and ports
+# A PID is a reference to a local or remote process, and a port is a reference to a resource (typically external to the application) that you’ll be reading or writing.
+
+# The PID of the current process is available by calling self . A new PID is created when you spawn a new process.
+
+
+# References
+# The function make_ref creates a globally unique reference; no other reference will be equal to it. We don’t use references in this book.

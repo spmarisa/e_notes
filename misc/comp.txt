@@ -1,0 +1,39 @@
+API TESTING
+REST SOAP TUT
+PLAY WITH GIT - RECOVER CHECKED OUT FILES
+# STEPS - # LETTERS
+
+XML - HTTP - TCP/IP
+XMML-RPC SOAP WSDL UDDI
+
+
+elixir
+
+mvc
+
+phoenix
+
+web services - what is webservice
+              - why webservices
+              - xml
+              - json
+              - rest and soap
+              - client server architecture
+              - building api
+              - making calls to api
+
+what is a web server and what it does
+web applications
+
+request types
+html forms
+
+GIT
+api testign tools - postman - soapui
+postgres and rethinkdb
+html
+js
+redis
+
+
+AJAX requests in phoenix

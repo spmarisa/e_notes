@@ -1,0 +1,52 @@
+sudo -i -u postgres
+psql
+ALTER ROLE postgres WITH PASSWORD 'postgres';
+
+
+\q
+
+
+su - postgres
+
+
+
+createdb testdb
+psql testdb
+
+service postgresql restart
+
+
+
+#data types
+
+NUMERIC TYPES
+
+MONETARY TYPES
+
+CHARACTER TYPES
+
+BINARY DATA TYPES
+
+DATE/TIME TYPES
+
+BOOLEAN TYPES
+
+ENUMERATED TYPE
+
+GEOMETRIC TYPE
+
+NETWORK ADDRESS TYPE
+
+BIT STRING TYPE
+
+TEXT SEARCH TYPE
+
+UUID TYPE
+
+XML TYPE
+
+JSON TYPE
+
+ARRAY TYPE
+
+RANGE TYPE

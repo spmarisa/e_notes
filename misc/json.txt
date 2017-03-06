@@ -1,0 +1,25 @@
+JSON is a syntax for storing and exchanging data.
+
+JSON is text, written with JavaScript object notation.
+
+
+JSON syntax is derived from JavaScript object notation syntax:
+
+Data is in name/value pairs
+Data is separated by commas
+Curly braces hold objects
+Square brackets hold arrays
+
+
+In JSON, keys must be strings, written with double quotes:
+
+
+
+In JSON, values must be one of the following data types:
+
+a string
+a number
+an object (JSON object)
+an array
+a boolean
+null

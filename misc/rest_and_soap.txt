@@ -1,0 +1,22 @@
+REST - you know it
+
+GET, PUT, DELETE, POST, OPTION
+
+VERB | URI | HTTP VERSION       RESPONSE CODE | HTTP VERSION
+     REQUEST HEADER                 RESPONSE HEADER
+    REQUEST BODY                    PESPONSE BODY
+
+
+
+
+SOAP
+
+A SOAP message is an ordinary XML document containing the following elements −
+
+Envelope − Defines the start and the end of the message. It is a mandatory element.
+
+Header − Contains any optional attributes of the message used in processing the message, either at an intermediary point or at the ultimate end-point. It is an optional element.
+
+Body − Contains the XML data comprising the message being sent. It is a mandatory element.
+
+Fault − An optional Fault element that provides information about errors that occur while processing the message.

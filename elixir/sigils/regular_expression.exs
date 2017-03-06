@@ -27,3 +27,15 @@ true = Regex.match?( ~r/foo/ , "Hello foo")
 # U   Normally modifiers like * and + are greedy, matching as much as possible. The U modifier makes them ungreedy, matching as little as possible.
 # u   Enable unicode-specific patterns like \p.
 # x   Enable extended mode—ignore whitespace and comments ( # to end of line).
+
+
+
+#MANIPULATE REGULAR EXPRESSIONS WITH REGEX MODULE
+Regex.run ~r{[aeiou]}, "caterpillar"
+# ["a"]
+Regex.scan ~r{[aeiou]}, "caterpillar"
+# [["a"], ["e"], ["i"], ["a"]]
+Regex.split ~r{[aeiou]}, "caterpillar"
+# ["c", "t", "rp", "ll", "r"]
+Regex.replace ~r{[aeiou]}, "caterpillar", "*"
+# "c*t*rp*ll*r"

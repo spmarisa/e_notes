@@ -1,0 +1,22 @@
+
+handle_open = fn
+{:ok, file} -> "First line: #{IO.read(file, :line)}"
+{_,
+error} -> "Error: #{:file.format_error(error)}"
+end
+IO.puts handle_open.(File.open("Rakefile"))
+# call with a file that exists
+IO.puts handle_open.(File.open("nonexistent"))
+# and then with one that doesn't
+
+
+Now, inside iex, type:
+c "handle_open.exs"
+This compiles and runs the code in the given file.
+We can do the same thing from the command line (that is, not inside iex) using this:
+
+
+$ elixir handle_open.exs
+We used the file extension .exs for this example. This is used for code that we want
+to run directly from a source file (think of the s as meaning script). For files we want
+to compile and use later, we’ll employ the .ex extension.

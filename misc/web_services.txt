@@ -1,0 +1,48 @@
+Web services are XML-based information exchange systems that use the Internet for direct application-to-application interaction. These systems can include programs, objects, messages, or documents.
+
+a complete web service is, therefore, any service that:
+
+  Is available over the Internet or private (intranet) networks
+
+  Uses a standardized XML messaging system
+
+  Is not tied to any one operating system or programming language
+
+  Is self-describing via a common XML grammar
+
+  Is discoverable via a simple find mechanism
+
+
+
+
+
+A web service enables communication among various applications by using open standards such as HTML, XML, WSDL, and SOAP. A web service takes the help of:
+
+  XML to tag the data
+  SOAP to transfer a message
+  WSDL to describe the availability of service.
+
+
+
+
+
+
+
+
+
+
+
+  WSDL
+  WSDL is an XML-based language for describing web services and how to access them.
+
+  WSDL describes a web service, along with the message format and protocol details for the web service.
+
+  To learn more about WSDL, visit our WSDL Tutorial.
+
+  UDDI
+  UDDI is an XML-based standard for describing, publishing, and finding web services.
+
+  To learn more about UDDI, visit our UDDI Tutorial.
+
+  SOAP
+  SOAP is a simple XML-based protocol that allows applications to exchange information over HTTP.

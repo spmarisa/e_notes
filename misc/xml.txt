@@ -1,0 +1,39 @@
+XML is a software- and hardware-independent tool for storing and transporting data.
+
+
+
+SYNTAX
+
+<root>
+  <child>
+    <subchild>.....</subchild>
+  </child>
+</root>
+
+
+
+
+XML Prolog
+The XML prolog is optional. If it exists, it must come first in the document.
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
+XML Tags are Case Sensitive
+XML Elements Must be Properly Nested
+XML elements can have attributes in name/value pairs just like in HTML. - In XML, the attribute values must always be quoted.
+Name conflicts in XML can easily be avoided using a name prefix.
+
+
+
+
+There are 5 pre-defined entity references in XML:
+
+&lt;	  <	  less than
+&gt;	  >	  greater than
+&amp;	  &	  ampersand
+&apos;	'	  apostrophe
+&quot;	"	  quotation mark
