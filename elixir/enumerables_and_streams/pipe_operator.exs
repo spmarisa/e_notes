@@ -5,7 +5,9 @@ other_function() |> new_function() |> baz() |> bar() |> foo()
 
 "Elixir rocks" |> String.split
 
-"Elixir rocks" |> String.upcase |> String.split
+"Elixir rocks"
+|> String.upcase
+|> String.split
 
 "elixir" |> String.ends_with?("ixir")
 

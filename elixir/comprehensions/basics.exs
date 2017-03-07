@@ -1,12 +1,13 @@
 # List comprehensions are syntactic sugar for looping through enumerables in Elixir. In this lesson we’ll look at how we can use comprehensions for iteration and generation.
 
-Basics
-Filters
-Using :into
 
-Generators and filters
-Bitstring Generators
-the :into option
+# result = for generator or filter... [ , into: value ] , do: expression
+
+# Basics
+# Filters
+# Using :into
+# Generators and filters
+# Bitstring Generators
 
 
 # Often times comprehensions can be used to produce more concise statements for Enum and Stream iteration. Let’s start by looking at a simple comprehension and then break it down:
@@ -15,6 +16,8 @@ for n <- [1, 2, 3, 4], do: n * n
 
 list = [1, 2, 3, 4, 5]
 for x <- list, do: x*x
+
+for x <- [ 1, 2, 3, 4, 5 ], x < 4, do: x * x
 
 # The first thing we notice is the use of for and a generator. What is a generator? Generators are the x <- [1, 2, 3, 4] expressions found in list comprehensions. They’re responsible for generating the next value.
 

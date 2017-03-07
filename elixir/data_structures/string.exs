@@ -46,6 +46,9 @@ String.split("Hello World", " ")
 {4, ""} = Integer.parse("4")
 
 
+String.slice("the cat on the mat", 4, 3)
+# "cat"
+
 
 String.reverse("abc")
 
@@ -175,3 +178,14 @@ String.valid?(<<239, 191, 191>>)
 # A common trick in Elixir is to concatenate the null byte <<0>> to a string to see its inner binary representation:
 "hełło" <> <<0>>
 # <<104, 101, 197, 130, 197, 130, 111, 0>>
+
+
+#Returns a float between 0 and 1 indicating the likely similarity of two strings.
+String.jaro_distance("jonathan", "jonathon")
+
+String.jaro_distance("josé", "john")
+
+
+
+#to convert one string to another
+String.myers_difference("banana", "panama")

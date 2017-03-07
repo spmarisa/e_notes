@@ -67,12 +67,25 @@ options[:notify_user]
 #list length
 length([1, 2, 3])
 
+#list flatten
+List.flatten([[[1], 2], [[[3]]]])
 
+#replace at
+list = [ 1, 2, 3 ]
+List.replace_at(list, 2, "buckle my shoe")
+
+
+#accessing tuples with list
+kw = [{:name, "Dave"}, {:likes, "Programming"}, {:where, "Dallas", "TX"}]
+List.keyfind(kw, "Dallas", 1)
 
 #get the last item in the list
 List.last([:a, :b, :c])
 :c = List.last([:a, :b, :c])
 
+
+options = [ {:width, 72}, {:style, "light"}, {:style, "print"} ]
+Keyword.get_values options, :style
 
 
 
@@ -87,3 +100,40 @@ Enum.filter( [1, 2, 3, 4], fn(x) -> x > 2 end )
 #LIST COMPREHENSIONS
 for n <- [1, 2, 3], do: n + n
 [2, 4, 6] = for n <- [1, 2, 3], do: n + n
+
+
+
+
+defmodule Su do
+  def sum([]), do: 0
+  def sum([head | tail]), do: head + sum(tail)
+end
+
+
+
+
+defmodule MyList do
+  def mapsum([], b), do: 0
+  def mapsum([head | tail], b), do: b.(head) + mapsum(tail, b)
+end
+
+MyList.mapsum [1, 2, 3], &(&1 * &1)
+
+
+
+
+defmodule MyList do
+  def maxi(a, b \\ 0)
+
+  def maxi([], b), do: b
+
+  def maxi([head | tail], b) when head > b do
+    maxi(tail, head)
+  end
+
+  def maxi([head | tail], b) when head < b do
+    maxi(tail, b)
+  end
+end
+
+MyList.maxi([1, 2, 3])

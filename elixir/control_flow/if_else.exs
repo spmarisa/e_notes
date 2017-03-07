@@ -15,7 +15,7 @@
 
 # Besides case and cond, Elixir also provides the macros if/2 and unless/2 which are useful when you need to check for only one condition:
 
-
+if 1 == 1, do: "true part", else: "false part"
 
 list = []
 
@@ -26,7 +26,11 @@ else
 end
 
 
+
+unless 1 == 1, do: "error", else: "OK"
+
 list = [1, 2, 3]
+
 unless length(list) == 0 do
   hd(list)
 end

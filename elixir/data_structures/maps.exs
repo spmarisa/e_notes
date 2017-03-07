@@ -18,6 +18,23 @@
 
 my_map = %{1 => {"banana", "coconut"}, 2 => {"chicken", "fish"}}
 
+Map.keys(my_map)
+Map.values(my_map)
+
+
+map = %{ name: "Dave", likes: "Programming", where: "Dallas" }
+map1 = Map.drop map, [:where, :likes]
+# %{name: "Dave"}
+
+map2 = Map.put map, :also_likes, "Ruby"
+# %{also_likes: "Ruby", likes: "Programming", name: "Dave", where: "Dallas"}
+
+Map.has_key? map1, :where
+# false
+
+{ value, updated_map } = Map.pop map2, :also_likes
+# {"Ruby", %{likes: "Programming", name: "Dave", where: "Dallas"}}
+
 # %{} defines an empty map
 # key is the id and value is the tuple that contains items
 

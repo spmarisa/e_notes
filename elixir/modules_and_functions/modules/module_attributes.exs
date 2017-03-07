@@ -5,6 +5,23 @@
 
     #As temporary storage -  They work as a temporary module storage to be used during compilation.
 
+defmodule Example do
+  @author "Dave Thomas"
+
+  def get_author do
+   @author
+  end
+end
+
+
+defmodule Example do
+  @attr "one"
+  def first, do: @attr
+
+  @attr "two"
+  def second, do: @attr
+end
+
 ##############################################################################################################################
 # AS ANNOTATIONS
 # Elixir brings the concept of module attributes from Erlang. For example:

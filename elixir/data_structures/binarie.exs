@@ -1,4 +1,5 @@
 # Sometimes you need to access data as a sequence of bits and bytes. For example, the headers in JPEG and MP3 files contain fields where a single byte may encode two or three separate values.
+
 # Elixir supports this with the binary data type. Binary literals are enclosed between << and >> . The basic syntax packs successive integers into bytes:
 
 bin = << 1, 2 >>

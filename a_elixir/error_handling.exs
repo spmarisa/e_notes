@@ -13,6 +13,8 @@
 # Error Handling
 # Before we can handle errors we need to create them and the simplest way to do so is with raise/1:
 raise("Oh no!")
+raise RuntimeError
+raise RuntimeError, message: "override message"
 
 # If we want to specify the type and message, we need to use raise/2:
 raise ArgumentError, message: "the argument value is invalid"

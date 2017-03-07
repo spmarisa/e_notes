@@ -1,5 +1,6 @@
 # Keywords and maps are the associative collections of Elixir. In Elixir, a keyword list is a special list of tuples whose first element is an atom; they share performance with lists:
 
+#used in the context of options passeed to functions
 
 # In many functional programming languages, it is common to use a list of 2-item tuples as the representation of a key-value data structure.
 

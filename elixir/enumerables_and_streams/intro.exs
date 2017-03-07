@@ -1,3 +1,9 @@
+#Technically, things that can be iterated are said to implement the Enumerable protocol.
+
+# The Enum module is the workhorse for collections
+# The Stream module lets you enumerate a collection lazily.This means that the next value is calculated only when it is needed.
+
+
 #A set of algorithms for enumerating over collections.
 # The Enum module includes nearly 100 functions for working with the collections.
 Enum.__info__(:functions) |> Enum.each(fn({function, arity}) ->
