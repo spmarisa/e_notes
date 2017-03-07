@@ -1,0 +1,73 @@
+https://github.com/torvalds/linux
+
+
+https://api.github.com/repos/torvalds/linux/issues
+
+
+GitHub provides a nice web API for fetching issues. 1 Simply issue a GET request to
+https://api.github.com/repos/user/project/issues
+and you’ll get back a JSON list of issues. We’ll reformat this, sort it, and filter out the oldest n, presenting the result as a table
+
+
+MIX - command line utility that manages elixir projects
+use it to create new projects, manage a projects's dependencies, run tests and run your code
+
+mix new issues
+
+
+config - application specific configuration here
+lib - projects source
+mix.exs - projects configuration options,
+test - to store our tests
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+PARSE THE COMMAND LINE
+
+write a separate module to interface between what the user types and what our program does
+By convention this module is called Project.CLI(Issues.CLI)
+
+Also by convention, the main entry point to this module will be a function called run that takes an array of command-line arguments.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Fortunately,
+Elixir comes with a wonderful (and simple) testing framework called ExUnit.
+
+It acts as a template for all the test files you write
+
+Test file names must end with _test .
+
+We’ll test that the option parser successfully detects the -h and --help options
+
+
+mix test
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+We can use mix to run our function. Let’s first see if help gets displayed.
+
+mix run -e 'Issues.CLI.run(["-h"])'
+
+You pass mix run an Elixir expression, which gets evaluated in the context of your application.
+
+Mix will recompile your application, as it is out of date before executing the expression.
+
+mix run -e 'Issues.CLI.run(["elixir-lang", "elixir"])'
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ADDING A LIBRARY TO YOUR PROJECT
+
+add in mix.exs
+
+{ :httpoison, "~> 0.9" }
+
+
+Use mix deps to list the dependencies and their status:
+
+$ mix deps
+
+$ mix deps.get
+
+you’ll find a new directory called deps containing your dependencies. Note that these dependencies are themselves just projects, so you can browse their source and read their documentation.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
