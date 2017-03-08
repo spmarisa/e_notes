@@ -10,7 +10,6 @@ Getting Started
         Modules and Functions
         Recursion
         Enumerables and streams
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         Processes
         IO and the file system
         alias, require and import
@@ -36,59 +35,8 @@ Mix and OTP
         Docs, tests and with
         Distributed tasks and configuration
 
-    Meta-programming in Elixir
+Meta-programming in Elixir
 
         Quote and unquote
         Macros
         Domain Specific Languages
-
-
-
-
-
-#####################################################
-collections
-control structures
-pipe operator
-mix - custom mix tasks
-documentation
-testing
-comprehensions
-iex helper
-
-
-
-
-
-umbrella projects
-specifications and types
-behaviours
-gen stage
-protocols
-
-plug
-ecto
-embedded elixir
-erlang term storage
-mnesia
-debugging
-
-guardian
-poolboy
-
-producer |> producer_consumer |> consumer
-
-
-
-api's
-web services
-postman tool to work with api's
-soapui tool to work with api's
-html/css
-caching
-
-actors and processes
-
-
-
-how phoenix handles the umbrella, supervision, pub sub

@@ -1,0 +1,43 @@
+ENUM AND STREAMS
+
+multiclause fucntion in elixir
+
+with
+
+modules adn functions - exercises
+
+agent
+
+keyword module and mapset module
+
+complex list pattern
+
+regex
+
+modules | structs | protocols
+
+structs
+
+pattern matching
+guard clauses
+
+pattern matching adn guard clauses in agents and anaonymous functions
+
+elixir structure facilities
+
+streams for reading files, tail optimizztion
+
+polymorphism
+
+behaviours
+
+nested DS
+
+comprehension
+
+tail call optimization - accumilator
+
+elixometer
+fibonaci
+list of n
+recursion for pi

@@ -1,16 +1,23 @@
-https://github.com/torvalds/linux
+our program will run from he command line -> passin a github username, a project name and an optional count
 
 
-https://api.github.com/repos/torvalds/linux/issues
+access github as http client - hadles json - sort the resulting structure - layout selected fields
 
 
-GitHub provides a nice web API for fetching issues. 1 Simply issue a GET request to
-https://api.github.com/repos/user/project/issues
-and you’ll get back a JSON list of issues. We’ll reformat this, sort it, and filter out the oldest n, presenting the result as a table
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#https://github.com/torvalds/linux
 
 
-MIX - command line utility that manages elixir projects
-use it to create new projects, manage a projects's dependencies, run tests and run your code
+#https://api.github.com/repos/torvalds/linux/issues
+
+
+#GitHub provides a nice web API for fetching issues. 1 Simply issue a GET request to
+#https://api.github.com/repos/user/project/issues
+#and you’ll get back a JSON list of issues. We’ll reformat this, sort it, and filter out the oldest n, presenting the result as a table
+
+
+#MIX - command line utility that manages elixir projects
+#use it to create new projects, manage a projects's dependencies, run tests and run your code
 
 mix new issues
 
@@ -71,3 +78,11 @@ $ mix deps.get
 you’ll find a new directory called deps containing your dependencies. Note that these dependencies are themselves just projects, so you can browse their source and read their documentation.
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Mix can package our code, along with its dependencies, into a single file that can be run on any Unix-based platform. This uses Erlang’s escript utility which can run precompiled programs stored as a Zip archive. In our case, the program will be run as issues .
+
+
+
+mix escript.build
+
+./issues elixir-lang elixir 3

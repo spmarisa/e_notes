@@ -1,0 +1,23 @@
+request life cycle
+
+endpoints
+
+channels - channel architecture
+
+plug
+
+ecto
+
+generators
+
+brunch
+
+HTTP response codes
+
+
+
+
+Application end point
+route duplication
+etwork services for native clients
+template rendering

@@ -1,0 +1,56 @@
+#Let’s look at Elixir’s actor-based concurrency model. Then we’ll dig into OTP, the Erlang management architecture that helps you create applications that are highly scalable and very reliable.
+
+#One of Elixir’s key features is the idea of packaging code into small chunks that can be run independently and concurrently
+
+#ELIXIR USES ACTOR MODEL FOR CONCURRENCY
+#An actor is an independent process that shares nothing with any other process
+#You can spawn new processes, send them messages, and receive messages back.
+
+
+#spawn/spawn-basic.ex
+
+defmodule SpawnBasic do
+  def greet do
+    IO.puts "Hello"
+  end
+end
+
+c("spawn-basic.ex")
+
+SpawnBasic.greet
+
+spawn(SpawnBasic, :greet, [])
+
+
+#The spawn function kicks off a new process.It comes in many forms, but the two simplest ones let you run an anonymous function and run a named function in a module, passing a list of arguments.
+
+
+#When we call spawn , it creates a new process to run the code we specify. We don’t know exactly when it will execute—we know only that it is eligible to run.
+
+#Instead we’ll use messages to synchronize your processes’ activity.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+SENDING MESSAGES BETWEEN PROCESSES
+
+In Elixir we send a message using the send function. It takes a PID and the message to send (an Elixir value, which we also call a term) on the right. generally use atoms and tuples
+
+
+We wait for messages using receive
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-> design your code around process
+-> separate these process into otp apps
+-> when otp gets too much load move it to its own node on better hardware
