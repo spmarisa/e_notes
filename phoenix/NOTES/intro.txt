@@ -23,3 +23,21 @@ a web server abstraction called plug, plug allows you towrite functions where yo
 if you dont understand a error message in elixir you should consider that a bug
 
 present a brief, high-level overview of Phoenix, the parts that make it up, and the layers underneath that support it.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+layers of phoenix
+
+connection
+|> endpoint
+|> router
+|> pipelines
+|> controller
+
+
+
+the controller is also a pipeline of functions, one that looks like this:
+
+connection
+|> controller
+|> common_services
+|> action
