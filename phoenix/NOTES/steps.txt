@@ -1,0 +1,9 @@
+mix phoenix.new rumbl
+
+cd rumbl
+
+mix ecto.create
+
+mix phoenix.server
+
+iex -S mix phoenix.server
