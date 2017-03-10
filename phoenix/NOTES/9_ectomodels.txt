@@ -50,3 +50,36 @@ mix phoenix.gen.model Video videos name:string approved_at:datetime description:
 mix do deps.get, compile
 
 mix ecto.gen.repo
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Ecto also has a feature called changesets that holds all changes you want to perform on the database
+
+
+
+alias Rumbl.Repo
+alias Rumbl.User
+
+Repo.insert(%User{ name: "José", username: "josevalim", password_hash: "<3<3elixir" })
+
+Repo.insert(%User{ name: "Chris", username: "cmc cord", password_hash: "phoenix" })
+
+Repo.all(User)
+
+Repo.get(User, 1)
+
+
+
+
+
+changeset = Rumbl.User.changeset(%Rumbl.User{username: "eric"})
+
+import Ecto.Changeset
+
+changeset = put_change(changeset, :username, "ericmj")
+
+changeset.changes
+
+get_change(changeset, :username)
