@@ -1,3 +1,5 @@
+#packing code into small chunks that can be run independently and concurrently
+
 #Let’s look at Elixir’s actor-based concurrency model. Then we’ll dig into OTP, the Erlang management architecture that helps you create applications that are highly scalable and very reliable.
 
 #One of Elixir’s key features is the idea of packaging code into small chunks that can be run independently and concurrently

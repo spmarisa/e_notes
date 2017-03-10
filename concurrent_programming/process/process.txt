@@ -1,0 +1,136 @@
+c("spawn-basic.ex")
+
+SpawnBasic.greet
+
+spawn(SpawnBasic, :greet, [])
+
+
+The spawn function kicks off a new process. It comes in many forms, but the two simplest ones let you run an anonymous function and run a named function in a module, passing a list of arguments.
+
+
+
+When we call spawn , it creates a new process to run the code we specify. We don’t know exactly when it will execute—we know only that it is eligible to run.
+
+Instead you’ll use messages to synchronize your processes’ activity.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+SENDING MESSAGES BETWEEN PROCESSES
+
+In Elixir we send a message using the send function.
+It takes a PID and the message to send (an Elixir value, which we also call a term) on the right
+You can send anything you want, but most Elixir developers seem to use atoms and tuples.
+
+
+
+We wait for messages using receive .
+In a way, this acts just like case , with the message body as the parameter
+Inside the block associated with the receive call, you can specify any number of patterns and associated actions.
+
+
+pid = spawn(Spawn1, :greet, [])
+send pid, {self, "World!"}
+
+receive do
+  {:ok, message} -> IO.puts message
+end
+
+
+
+Process.alive?(pid)
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+HANDLING MULTIPLE MESSAGES
+
+We can tell receive that we want to time out if a response is not received in so many milliseconds
+
+
+
+
+pid = spawn(Spawn2, :greet, [])
+
+send pid, {self, "World!"}
+
+receive do
+  {:ok, message} -> IO.puts message
+end
+
+send pid, {self, "Kermit!"}
+
+receive do
+  {:ok, message} -> IO.puts message
+  after 500 -> IO.puts "The greeter has gone away"
+end
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+RECURSION, LOOPING, and the STACK
+
+elixir implements tail-call optimization
+
+
+to make a recursive call tail-call optimization just add an accumulator.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ex
+create n processes, kepp passing a number every time incrementing
+
+elixir -r chain.exs -e "Chain.run(10)"
+
+elixir -r chain.exs -e "Chain.run(100)"
+
+elixir -r chain.exs -e "Chain.run(1_000)"
+
+elixir -r chain.exs -e "Chain.run(10_000)"
+
+elixir -r chain.exs -e "Chain.run(400_000)"
+
+elixir --erl "+P 1000000" -r chain.exs -e "Chain.run(400_000)"
+
+elixir --erl "+P 1000000" -r chain.exs -e "Chain.run(1_000_000)"
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+WHEN PROCESS DIES
+
+
+Who gets told when a process dies? By default, no one. Obviously the VM knows and can report it to the console, but your code will be oblivious unless you explicitly tell Elixir you want to get involved.
+
+
+spawn a function that uses -> erlang timer library -> sleep for 500ms -> exists with a status of 99
+
+
+LINKING 2 PROCESSES
+Linking joins the calling process and another process—each receives notifica-
+tions about the other
+we can link two processes - when processes are linked, each can recieve information when the other exits
+
+
+The "spawn_link" call spawns a process and links it to the caller in one operation.
+
+
+
+So our child process died, and it killed the entire application. That’s the default behavior of linked processes—when one exits abnormally, it kills the other.
+
+
+to handle the death of another process? Well, you probably don’t want to do this.
+Elixir uses the OTP framework for constructing process trees, and OTP includes the concept of process supervision. An incredible amount of effort has been spent getting this right, so I recommend using it most of the time.
+
+
+However, you can tell Elixir to convert the exit signals from a linked process into a message you can handle. Do this by trapping the exit.
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+MONITORING A PROCESS
+
+Linking joins the calling process and another process—each receives notifications about the other
+
+monitoring lets a process spawn another and be notified of its termination, but without the reverse notification—it is
+one-way only.
+
+When you monitor a process, you receive a :DOWN message when it exits or fails, or if it doesn’t exist.
+
+You can use spawn_monitor to turn on monitoring when you spawn a process, or you can use Process.monitor to monitor an existing process
+there is a potential race condition—if the other process dies before your monitor call completes, you may not receive a notification.

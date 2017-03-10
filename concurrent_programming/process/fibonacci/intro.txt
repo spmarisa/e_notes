@@ -1,0 +1,7 @@
+calculate fib(n) for a list of n
+fib(n) is the nth fibonacci number
+
+
+calculation of Fibonacci numbers 10 through 37 takes a measurable number of seconds on typical computers.
+
+The twist is that we’ll write our program to calculate different Fibonacci numbers in parallel.

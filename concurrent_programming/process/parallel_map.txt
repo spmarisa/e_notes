@@ -1,0 +1,1 @@
+Regular map returns the list that results from applying a function to each element of a collection. The parallel version does the same, but it applies the function to each element in a separate process.

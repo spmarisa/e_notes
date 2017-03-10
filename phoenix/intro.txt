@@ -53,3 +53,7 @@ Phoenix is made up of a number of distinct parts, each with its own purpose and 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 think of any webserver as a function
+
+
+
+ROUTES |> CONTROLLER |> VIEW |> TEMPLATE
